@@ -14,8 +14,6 @@ import com.nahlsyarezajbusaf.timeplan_frontend.R;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Bulan;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.IdentityImageView;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.JenisProker;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.Proker;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
@@ -34,12 +32,12 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
     private static final int DIM_COLOR = Color.rgb(153, 115, 2);
     private static final int BRIGHT_COLOR = Color.rgb(255, 193, 7);
-    private ImageView back, logo_bidang, show_owned, show_activities_color;
-    private Button bulan_button, next_bulan_button, back_bulan_button;
-    public Map<Bulan, Integer> month_map = new HashMap<>();
-    public List<ProkerDisplay> proker_display_list = new ArrayList<>();
+    private ImageView logoBidangImage, showOwnedImage, showActivitiesByColorImage;
+    private Button bulanButton, nextBulanButton, backBulanButton;
+    public Map<Bulan, Integer> bulanMap = new HashMap<>();
+    public List<ProkerDisplay> prokderDisplayList = new ArrayList<>();
     private BaseApiService apiService;
-    private final Bulan[] month_array = Bulan.values();
+    private final Bulan[] monthArray = Bulan.values();
     public static boolean CONTROL_VAR = true;
 
     @Override
@@ -48,83 +46,82 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         setContentView(R.layout.activity_timeplan_calendar);
 
         apiService = UtilsApi.getApiService();
-        back = findViewById(R.id.backImage);
-        logo_bidang = findViewById(R.id.logoBidangImageTimeplanCalendar);
-        bulan_button = findViewById(R.id.bulanButtonTimeplanCalendar);
-        next_bulan_button = findViewById(R.id.nextBulanButtonTimeplanCalendar);
-        back_bulan_button = findViewById(R.id.backBulanButtonTimeplanCalendar);
-        show_owned = findViewById(R.id.showOwnedImageTimeplanCalendar);
-        show_activities_color = findViewById(R.id.showActivitiesByColorImageTimeplanCalendar);
+        logoBidangImage = findViewById(R.id.TimeplanCalendar_logoBidangImage);
+        bulanButton = findViewById(R.id.TimeplanCalendar_bulanButton);
+        nextBulanButton = findViewById(R.id.TimeplanCalendar_nextBulanButton);
+        backBulanButton = findViewById(R.id.TimeplanCalendar_backBulanButton);
+        showOwnedImage = findViewById(R.id.TimeplanCalendar_showOwnedImage);
+        showActivitiesByColorImage = findViewById(R.id.TimeplanCalendar_showActivitiesByColorImage);
 
-        StaticUtils.handleMonthDates(month_map);
-        logo_bidang.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
-        bulan_button.setText(month_array[StaticUtils.CURRENT_BULAN_INDEX].name());
+        StaticUtils.handleMonthDates(bulanMap);
+        logoBidangImage.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
+        bulanButton.setText(monthArray[StaticUtils.CURRENT_BULAN_INDEX].name());
 
         if (StaticUtils.SHOW_OWNED) {
-            show_owned.setColorFilter(BRIGHT_COLOR);
+            showOwnedImage.setColorFilter(BRIGHT_COLOR);
         }
 
         if (StaticUtils.SHOW_ACTIVITIES_COLOR) {
-            show_activities_color.setColorFilter(BRIGHT_COLOR);
+            showActivitiesByColorImage.setColorFilter(BRIGHT_COLOR);
         }
 
-        show_owned.setOnClickListener(view -> {
+        showOwnedImage.setOnClickListener(view -> {
             if (StaticUtils.SHOW_OWNED) {
                 StaticUtils.SHOW_OWNED = false;
-                show_owned.setColorFilter(DIM_COLOR);
+                showOwnedImage.setColorFilter(DIM_COLOR);
                 viewToast("Tampilkan semua proker");
             } else {
                 StaticUtils.SHOW_OWNED = true;
-                show_owned.setColorFilter(BRIGHT_COLOR);
+                showOwnedImage.setColorFilter(BRIGHT_COLOR);
                 viewToast("Tampilkan hanya proker bidang");
             }
 
             moveActivity(TimeplanCalendarActivity.class);
         });
 
-        show_activities_color.setOnClickListener(view -> {
+        showActivitiesByColorImage.setOnClickListener(view -> {
             if (StaticUtils.SHOW_ACTIVITIES_COLOR) {
                 StaticUtils.SHOW_ACTIVITIES_COLOR = false;
-                show_owned.setColorFilter(DIM_COLOR);
+                showOwnedImage.setColorFilter(DIM_COLOR);
                 viewToast("Filter warna maksimal");
             } else {
                 StaticUtils.SHOW_ACTIVITIES_COLOR = true;
-                show_owned.setColorFilter(BRIGHT_COLOR);
+                showOwnedImage.setColorFilter(BRIGHT_COLOR);
                 viewToast("Filter warna minimal");
             }
 
             moveActivity(TimeplanCalendarActivity.class);
         });
 
-        next_bulan_button.setOnClickListener(view -> {
+        nextBulanButton.setOnClickListener(view -> {
             if (StaticUtils.CURRENT_BULAN_INDEX < 11) {
                 StaticUtils.CURRENT_BULAN_INDEX++;
             }
-            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.CURRENT_BULAN_INDEX];
+            StaticUtils.CURRENT_MONTH = monthArray[StaticUtils.CURRENT_BULAN_INDEX];
             CONTROL_VAR = true;
             moveActivity(TimeplanCalendarActivity.class);
         });
 
-        back_bulan_button.setOnClickListener(view -> {
+        backBulanButton.setOnClickListener(view -> {
             if (StaticUtils.CURRENT_BULAN_INDEX > 0) {
                 StaticUtils.CURRENT_BULAN_INDEX--;
             }
-            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.CURRENT_BULAN_INDEX];
+            StaticUtils.CURRENT_MONTH = monthArray[StaticUtils.CURRENT_BULAN_INDEX];
             CONTROL_VAR = true;
             moveActivity(TimeplanCalendarActivity.class);
         });
 
-        back.setOnClickListener(view -> {
-            moveActivity(MainActivity.class);
-        });
-
-        logo_bidang.setOnClickListener(view -> {
+        logoBidangImage.setOnClickListener(view -> {
             moveActivity(InfoBidangActivity.class);
         });
 
         handleGetProkerDisplay();
+    }
 
-//        Log.i("CECEP", StaticUtils.CURRENT_MONTH + " " + month_map.get(StaticUtils.CURRENT_MONTH));
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(MainActivity.class);
     }
 
     public void handleGetProkerDisplay() {
@@ -138,15 +135,15 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
                 BaseResponse<List<ProkerDisplay>> res = response.body();
 
-                proker_display_list.clear();
-                proker_display_list = res.payload;
+                prokderDisplayList.clear();
+                prokderDisplayList = res.payload;
 
                 ConstraintLayout layout = findViewById(R.id.timeplanCalendar);
 
                 for (int j = 0; j < 7; j++) {
                     for (int i = 0; i < 5; i++) {
                         int index = 1 + i + (j * 5);
-                        if (index < month_map.get(StaticUtils.CURRENT_MONTH) + 1) {
+                        if (index < bulanMap.get(StaticUtils.CURRENT_MONTH) + 1) {
                             printCalendarBox(layout, index, i, j);
                         } else {
                             break;
@@ -166,9 +163,9 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         List<ProkerDisplay> relevant_proker_display = new ArrayList<>();
         List<ProkerDisplay> proker_list = new ArrayList<>();
 
-        for (ProkerDisplay pd : proker_display_list) {
-            int st = getIndex(month_array, pd.bulan_start);
-            int ed = getIndex(month_array, pd.bulan_end);
+        for (ProkerDisplay pd : prokderDisplayList) {
+            int st = getIndex(monthArray, pd.bulan_start);
+            int ed = getIndex(monthArray, pd.bulan_end);
 
             if (st == StaticUtils.CURRENT_BULAN_INDEX && ed == StaticUtils.CURRENT_BULAN_INDEX) {
                 if (StaticUtils.SHOW_OWNED) {
@@ -207,7 +204,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
         if (CONTROL_VAR) {
             StringBuilder sb = new StringBuilder();
-            sb.append(month_array[StaticUtils.CURRENT_BULAN_INDEX]).append(": ");
+            sb.append(monthArray[StaticUtils.CURRENT_BULAN_INDEX]).append(": ");
             for (ProkerDisplay pd : relevant_proker_display) {
                 sb.append(pd.nama_proker).append(" (").append(pd.tanggal_start).append(" - ").append(pd.tanggal_end).append("), ");
             }

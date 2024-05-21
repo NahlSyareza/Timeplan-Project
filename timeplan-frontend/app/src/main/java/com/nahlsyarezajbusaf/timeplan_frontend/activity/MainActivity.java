@@ -1,29 +1,16 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
 import android.os.Bundle;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.Bulan;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends TemplateActivity {
 
-    public ImageView logo_bidang, view_timeplan, add_timeplan;
+    public ImageView logoBidangImage, viewTimeplanImage, addTimeplanImage;
     private BaseApiService apiService;
 
     @Override
@@ -32,11 +19,11 @@ public class MainActivity extends TemplateActivity {
         setContentView(R.layout.activity_main);
 
         apiService = UtilsApi.getApiService();
-        logo_bidang = findViewById(R.id.logoBidangImageMain);
-        view_timeplan = findViewById(R.id.viewTimeplanImageMain);
-        add_timeplan = findViewById(R.id.addTimeplanImageMain);
+        logoBidangImage = findViewById(R.id.Main_logoBidangImage);
+        viewTimeplanImage = findViewById(R.id.Main_viewTimeplanImage);
+        addTimeplanImage = findViewById(R.id.Main_addTimeplanImage);
 
-        view_timeplan.setOnClickListener(view -> {
+        viewTimeplanImage.setOnClickListener(view -> {
             if(StaticUtils.LOGGED_BIDANG.equals("NONE")) {
                 viewToast("Bidang harus login!");
             } else {
@@ -44,7 +31,7 @@ public class MainActivity extends TemplateActivity {
             }
         });
 
-        add_timeplan.setOnClickListener(view -> {
+        addTimeplanImage.setOnClickListener(view -> {
             if(StaticUtils.LOGGED_BIDANG.equals("NONE")) {
                 viewToast("Bidang harus login!");
             } else {
@@ -53,15 +40,20 @@ public class MainActivity extends TemplateActivity {
         });
 
         if (!StaticUtils.LOGGED_BIDANG.equals("NONE")) {
-            logo_bidang.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
+            logoBidangImage.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
         }
 
-        logo_bidang.setOnClickListener(view -> {
+        logoBidangImage.setOnClickListener(view -> {
             if (!StaticUtils.LOGGED_BIDANG.equals("NONE")) {
                 moveActivity(InfoBidangActivity.class);
             } else {
                 moveActivity(LoginBidangActivity.class);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

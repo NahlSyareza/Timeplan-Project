@@ -16,8 +16,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TimeplanProkerDetailsActivity extends TemplateActivity {
-    private TextView nama_proker_desc, steering_comittee_desc;
-    private ImageView back_image, milestone_proker_image;
+    private TextView namaProkerDesc, steeringComitteeDesc;
+    private ImageView milestoneProkerImage;
     private BaseApiService apiService;
 
     @Override
@@ -26,20 +26,21 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
         setContentView(R.layout.activity_timeplan_proker_details);
 
         apiService = UtilsApi.getApiService();
-        back_image = findViewById(R.id.backImage);
-        nama_proker_desc = findViewById(R.id.namaProkerDescTextTimeplanDetails);
-        steering_comittee_desc = findViewById(R.id.steeringComitteeDescTextTimeplanDetails);
-        milestone_proker_image = findViewById(R.id.milestoneProkerImageTimeplanProkerDetails);
+        namaProkerDesc = findViewById(R.id.TimeplanProkerDetails_namaProkerDesc);
+        steeringComitteeDesc = findViewById(R.id.TimeplanProkerDetails_steeringComitteeDesc);
+        milestoneProkerImage = findViewById(R.id.TimeplanProkerDetails_milestoneProkerImage);
 
         handleGetProker();
 
-        back_image.setOnClickListener(view -> {
-            moveActivity(TimeplanCalendarActivity.class);
-        });
-
-        milestone_proker_image.setOnClickListener(view -> {
+        milestoneProkerImage.setOnClickListener(view -> {
             moveActivity(TimeplanProkerMilestoneActivity.class);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(TimeplanCalendarActivity.class);
     }
 
     public void handleGetProker() {
@@ -56,8 +57,8 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
                 BaseResponse<Proker> res = response.body();
                 Proker proker = res.payload;
 
-                nama_proker_desc.setText(proker.nama_proker);
-                steering_comittee_desc.setText(proker.steering_comittee);
+                namaProkerDesc.setText(proker.nama_proker);
+                steeringComitteeDesc.setText(proker.steering_comittee);
             }
 
             @Override

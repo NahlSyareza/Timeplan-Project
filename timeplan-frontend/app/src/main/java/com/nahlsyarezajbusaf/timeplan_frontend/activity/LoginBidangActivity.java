@@ -19,11 +19,9 @@ import retrofit2.Response;
 
 public class LoginBidangActivity extends TemplateActivity {
 
-    private TextView registerBidangTextLoginBidang;
-    private EditText namaBidangFieldLoginBidang;
-    private EditText passwordBidangFieldLoginBidang;
-    private Button loginButtonLoginBidang;
-    private ImageView backImage;
+    private TextView registerBidangText;
+    private EditText namaBidangField, passwordBidangField;
+    private Button loginButton;
     private BaseApiService apiService;
 
     @Override
@@ -32,30 +30,31 @@ public class LoginBidangActivity extends TemplateActivity {
         setContentView(R.layout.activity_login_bidang);
 
         apiService = UtilsApi.getApiService();
-        registerBidangTextLoginBidang = findViewById(R.id.registerBidangTextLoginBidang);
-        namaBidangFieldLoginBidang = findViewById(R.id.namaBidangFieldLoginBidang);
-        passwordBidangFieldLoginBidang = findViewById(R.id.passwordBidangFieldLoginBidang);
-        loginButtonLoginBidang = findViewById(R.id.loginButtonLoginBidang);
-        backImage = findViewById(R.id.backImage);
+        registerBidangText = findViewById(R.id.LoginBidang_registerBidangText);
+        namaBidangField = findViewById(R.id.LoginBidang_namaBidangField);
+        passwordBidangField = findViewById(R.id.LoginBidang_passwordBidangField);
+        loginButton = findViewById(R.id.LoginBidang_loginButton);
 
-        registerBidangTextLoginBidang.setOnClickListener(view -> {
+        registerBidangText.setOnClickListener(view -> {
             moveActivity(RegisterBidangActivity.class);
         });
 
-        backImage.setOnClickListener(view -> {
-            moveActivity(MainActivity.class);
-        });
-
-        loginButtonLoginBidang.setOnClickListener(view -> {
+        loginButton.setOnClickListener(view -> {
             handleLoginBidang();
         });
     }
 
-    public void handleLoginBidang() {
-        String nama_bidang = namaBidangFieldLoginBidang.getText().toString().toUpperCase();
-        String password_bidang = passwordBidangFieldLoginBidang.getText().toString();
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(MainActivity.class);
+    }
 
-        apiService.loginBidang(nama_bidang, password_bidang).enqueue(new Callback<BaseResponse<Bidang>>() {
+    public void handleLoginBidang() {
+        String namaBidang = namaBidangField.getText().toString().toUpperCase();
+        String passwordBidang = passwordBidangField.getText().toString();
+
+        apiService.loginBidang(namaBidang, passwordBidang).enqueue(new Callback<BaseResponse<Bidang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Bidang>> call, Response<BaseResponse<Bidang>> response) {
                 if (!response.isSuccessful()) {
@@ -68,7 +67,7 @@ public class LoginBidangActivity extends TemplateActivity {
                 viewToast(res.message);
 
                 if (res.state) {
-                    StaticUtils.LOGGED_BIDANG = nama_bidang;
+                    StaticUtils.LOGGED_BIDANG = namaBidang;
                     moveActivity(MainActivity.class);
                 }
             }

@@ -1,8 +1,5 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,9 +19,8 @@ import retrofit2.Response;
 
 public class EditBidangActivity extends TemplateActivity {
 
-    private ImageView back_image;
-    private EditText nama_bidang_field, password_bidang_field, nama_ketua_bidang_field, nama_pengurus_bidang_field;
-    private Button edit_button;
+    private EditText namaBidangField, passwordBidangField, namaKetuaBidangField, namaPengurusBidangField;
+    private Button editButton;
     private BaseApiService apiService;
 
     @Override
@@ -33,29 +29,30 @@ public class EditBidangActivity extends TemplateActivity {
         setContentView(R.layout.activity_edit_bidang);
 
         apiService = UtilsApi.getApiService();
-        back_image = findViewById(R.id.backImage);
-        nama_bidang_field = findViewById(R.id.namaBidangFieldEditBidang);
-        password_bidang_field = findViewById(R.id.passwordBidangFieldEditBidang);
-        nama_ketua_bidang_field = findViewById(R.id.namaKetuaBidangFieldEditBidang);
-        nama_pengurus_bidang_field = findViewById(R.id.namaPengurusBidangFieldEditBidang);
-        edit_button = findViewById(R.id.editButtonEditBidang);
+        namaBidangField = findViewById(R.id.EditBidang_namaBidangField);
+        passwordBidangField = findViewById(R.id.EditBidang_passwordBidangField);
+        namaKetuaBidangField = findViewById(R.id.EditBidang_namaKetuaBidangField);
+        namaPengurusBidangField = findViewById(R.id.EditBidang_namaPengurusBidang);
+        editButton = findViewById(R.id.EditBidang_editButton);
 
         handleGetBidang();
 
-        edit_button.setOnClickListener(view -> {
+        editButton.setOnClickListener(view -> {
             handleEditBidang();
             handleEditProker();
-            StaticUtils.LOGGED_BIDANG = nama_bidang_field.getText().toString();
-            moveActivity(MainActivity.class);
-        });
-
-        back_image.setOnClickListener(view -> {
+            StaticUtils.LOGGED_BIDANG = namaBidangField.getText().toString();
             moveActivity(MainActivity.class);
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(MainActivity.class);
+    }
+
     public void handleEditProker() {
-        apiService.editProker(StaticUtils.LOGGED_BIDANG, nama_bidang_field.getText().toString()).enqueue(new Callback<BaseResponse<Proker>>() {
+        apiService.editProker(StaticUtils.LOGGED_BIDANG, namaBidangField.getText().toString()).enqueue(new Callback<BaseResponse<Proker>>() {
             @Override
             public void onResponse(Call<BaseResponse<Proker>> call, Response<BaseResponse<Proker>> response) {
                 if(!response.isSuccessful()) {
@@ -77,10 +74,10 @@ public class EditBidangActivity extends TemplateActivity {
     }
 
     public void handleEditBidang() {
-        String nama_bidang = nama_bidang_field.getText().toString();
-        String password_bidang = password_bidang_field.getText().toString();
-        String nama_ketua_bidang = nama_ketua_bidang_field.getText().toString();
-        String[] nama_pengurus_bidang = nama_pengurus_bidang_field.getText().toString().split("\n");
+        String nama_bidang = namaBidangField.getText().toString();
+        String password_bidang = passwordBidangField.getText().toString();
+        String nama_ketua_bidang = namaKetuaBidangField.getText().toString();
+        String[] nama_pengurus_bidang = namaPengurusBidangField.getText().toString().split("\n");
 
         apiService.editBidang(StaticUtils.LOGGED_BIDANG, nama_bidang, password_bidang, nama_ketua_bidang, nama_pengurus_bidang).enqueue(new Callback<BaseResponse<Bidang>>() {
             @Override
@@ -115,15 +112,15 @@ public class EditBidangActivity extends TemplateActivity {
                 BaseResponse<Bidang> res = response.body();
                 Bidang bidang = res.payload;
 
-                nama_bidang_field.setText(bidang.nama_bidang);
-                password_bidang_field.setText(bidang.password_bidang);
-                nama_ketua_bidang_field.setText(bidang.nama_ketua_bidang);
+                namaBidangField.setText(bidang.nama_bidang);
+                passwordBidangField.setText(bidang.password_bidang);
+                namaKetuaBidangField.setText(bidang.nama_ketua_bidang);
                 StringBuilder sb = new StringBuilder();
                 for(String s : bidang.nama_pengurus_bidang) {
                     sb.append(s).append("\n");
                 }
                 sb.delete(sb.length() - 2, sb.length());
-                nama_pengurus_bidang_field.setText(sb.toString());
+                namaPengurusBidangField.setText(sb.toString());
             }
 
             @Override

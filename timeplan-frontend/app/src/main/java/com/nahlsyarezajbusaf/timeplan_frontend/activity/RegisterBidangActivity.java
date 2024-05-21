@@ -1,10 +1,8 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
@@ -12,20 +10,14 @@ import com.nahlsyarezajbusaf.timeplan_frontend.model.Bidang;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterBidangActivity extends TemplateActivity {
 
-    private EditText namaBidangFieldBidang;
-    private EditText passwordBidangFieldBidang;
-    private EditText namaKetuaBidangFieldBidang;
-    private EditText namaPengurusBidangFieldBidang;
-    private Button registerButtonRegisterBidang;
-    private ImageView backImage;
+    private EditText namaBidangField, passwordBidangField, namaKetuaBidangField, namaPengurusBidangField;
+    private Button registerButton;
     private BaseApiService apiService;
 
     @Override
@@ -34,27 +26,28 @@ public class RegisterBidangActivity extends TemplateActivity {
         setContentView(R.layout.activity_register_bidang);
 
         apiService = UtilsApi.getApiService();
-        namaBidangFieldBidang = findViewById(R.id.namaBidangFieldRegisterBidang);
-        passwordBidangFieldBidang = findViewById(R.id.passwordBidangFieldRegisterBidang);
-        namaKetuaBidangFieldBidang = findViewById(R.id.namaKetuaBidangFieldRegisterBidang);
-        namaPengurusBidangFieldBidang = findViewById(R.id.namaPengurusBidangFieldRegisterBidang);
-        registerButtonRegisterBidang = findViewById(R.id.registerButtonRegisterBidang);
-        backImage = findViewById(R.id.backImage);
+        namaBidangField = findViewById(R.id.RegisterBidang_namaBidangField);
+        passwordBidangField = findViewById(R.id.RegisterBidang_passwordBidangField);
+        namaKetuaBidangField = findViewById(R.id.RegisterBidang_namaKetuaBidangField);
+        namaPengurusBidangField = findViewById(R.id.RegisterBidang_namaPengurusBidangField);
+        registerButton = findViewById(R.id.RegisterBidang_registerButton);
 
-        backImage.setOnClickListener(view -> {
-            moveActivity(LoginBidangActivity.class);
-        });
-
-        registerButtonRegisterBidang.setOnClickListener(view -> {
+        registerButton.setOnClickListener(view -> {
             handleAddBidang();
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(LoginBidangActivity.class);
+    }
+
     public void handleAddBidang() {
-        String nama_bidang = namaBidangFieldBidang.getText().toString();
-        String password_bidang = passwordBidangFieldBidang.getText().toString();
-        String nama_ketua_bidang = namaKetuaBidangFieldBidang.getText().toString();
-        String[] nama_pengurus_bidang = namaPengurusBidangFieldBidang.getText().toString().split("\n");
+        String nama_bidang = namaBidangField.getText().toString();
+        String password_bidang = passwordBidangField.getText().toString();
+        String nama_ketua_bidang = namaKetuaBidangField.getText().toString();
+        String[] nama_pengurus_bidang = namaPengurusBidangField.getText().toString().split("\n");
 
         apiService.registerBidang(nama_bidang, password_bidang, nama_ketua_bidang, nama_pengurus_bidang).enqueue(new Callback<BaseResponse<Bidang>>() {
             @Override

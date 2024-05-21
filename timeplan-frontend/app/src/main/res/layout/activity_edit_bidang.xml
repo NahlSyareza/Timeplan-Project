@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
 
     tools:context=".activity.EditBidangActivity">
 
@@ -20,15 +20,6 @@
         app:layout_constraintVertical_bias="0.087"
         app:srcCompat="@mipmap/logo_ime_background" />
 
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="300dp"
@@ -41,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoImage7">
 
         <EditText
-            android:id="@+id/namaBidangFieldEditBidang"
+            android:id="@+id/EditBidang_namaBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -60,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/passwordBidangFieldEditBidang"
+            android:id="@+id/EditBidang_passwordBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -76,10 +67,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaBidangFieldEditBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/EditBidang_namaBidangField" />
 
         <EditText
-            android:id="@+id/namaKetuaBidangFieldEditBidang"
+            android:id="@+id/EditBidang_namaKetuaBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -95,10 +86,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordBidangFieldEditBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/EditBidang_passwordBidangField" />
 
         <EditText
-            android:id="@+id/namaPengurusBidangFieldEditBidang"
+            android:id="@+id/EditBidang_namaPengurusBidang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -116,11 +107,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaKetuaBidangFieldEditBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/EditBidang_namaKetuaBidangField" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/editButtonEditBidang"
+        android:id="@+id/EditBidang_editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

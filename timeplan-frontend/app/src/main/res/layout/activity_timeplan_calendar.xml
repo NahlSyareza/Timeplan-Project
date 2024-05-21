@@ -5,17 +5,8 @@
     android:id="@+id/timeplanCalendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
     tools:context=".activity.TimeplanCalendarActivity">
-
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
 
     <ImageView
         android:id="@+id/logoImage"
@@ -30,7 +21,7 @@
         app:srcCompat="@mipmap/logo_ime_background" />
 
     <ImageView
-        android:id="@+id/logoBidangImageTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_logoBidangImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -40,7 +31,7 @@
         app:srcCompat="@drawable/baseline_person_24" />
 
     <Button
-        android:id="@+id/bulanButtonTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_bulanButton"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginTop="250dp"
@@ -58,7 +49,7 @@
         app:strokeWidth="2dp" />
 
     <Button
-        android:id="@+id/nextBulanButtonTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_nextBulanButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="250dp"
@@ -76,7 +67,7 @@
         app:strokeWidth="2dp" />
 
     <Button
-        android:id="@+id/backBulanButtonTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_backBulanButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="75dp"
@@ -94,7 +85,7 @@
         app:strokeWidth="2dp" />
 
     <ImageView
-        android:id="@+id/showOwnedImageTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_showOwnedImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -105,7 +96,7 @@
         app:tint="#997302" />
 
     <ImageView
-        android:id="@+id/showActivitiesByColorImageTimeplanCalendar"
+        android:id="@+id/TimeplanCalendar_showActivitiesByColorImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="250dp"

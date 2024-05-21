@@ -1,27 +1,15 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Bidang;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.Bulan;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.JenisProker;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.Proker;
-import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,8 +17,8 @@ import retrofit2.Response;
 
 public class InfoBidangActivity extends TemplateActivity {
 
-    private TextView nama_bidang_desc, nama_ketua_bidang_desc, nama_pengurus_bidang_desc;
-    private ImageView logo_bidang, back_image, logout, list_proker, edit_bidang_image;
+    private TextView namaBidangDesc, namaKetuaBidangDesc, namaPengurusBidangDesc;
+    private ImageView logoBidangImage, logoutImage, listProkerImage, editBidangImage;
     private BaseApiService apiService;
 
     @Override
@@ -39,35 +27,36 @@ public class InfoBidangActivity extends TemplateActivity {
         setContentView(R.layout.activity_info_bidang);
 
         apiService = UtilsApi.getApiService();
-        logo_bidang = findViewById(R.id.logoBidangImageInfoBidang);
-        back_image = findViewById(R.id.backImage);
-        nama_bidang_desc = findViewById(R.id.namaBidangDescTextInfoBidang);
-        nama_ketua_bidang_desc = findViewById(R.id.namaKetuaBidangDescTextInfoBidang);
-        nama_pengurus_bidang_desc = findViewById(R.id.namaPengurusBidangDescTextInfoBidang);
-        logout = findViewById(R.id.logoutImageInfoBidang);
-        list_proker = findViewById(R.id.listProkerImageInfoBidang);
-        edit_bidang_image = findViewById(R.id.editBidangImageInfoBidang);
+        logoBidangImage = findViewById(R.id.InfoBidang_logoBidangImage);
+        namaBidangDesc = findViewById(R.id.InfoBidang_namaBidangDesc);
+        namaKetuaBidangDesc = findViewById(R.id.InfoBidang_namaKetuaBidangDesc);
+        namaPengurusBidangDesc = findViewById(R.id.InfoBidang_namaPengurusBidangDesc);
+        logoutImage = findViewById(R.id.InfoBidang_logoutImage);
+        listProkerImage = findViewById(R.id.InfoBidang_listProkerImage);
+        editBidangImage = findViewById(R.id.InfoBidang_editBidangImage);
 
         handleGetBidang();
 
-        logo_bidang.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
+        logoBidangImage.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
 
-        edit_bidang_image.setOnClickListener(view -> {
+        editBidangImage.setOnClickListener(view -> {
             moveActivity(EditBidangActivity.class);
         });
 
-        list_proker.setOnClickListener(view -> {
+        listProkerImage.setOnClickListener(view -> {
         });
 
-        logout.setOnClickListener(view -> {
+        logoutImage.setOnClickListener(view -> {
             moveActivity(MainActivity.class);
             StaticUtils.LOGGED_BIDANG = "NONE";
             viewToast("Bidang berhasil logout!");
         });
+    }
 
-        back_image.setOnClickListener(view -> {
-            moveActivity(PREVIOUS_CLASS);
-        });
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(PREVIOUS_CLASS);
     }
 
     public void handleGetBidang() {
@@ -92,9 +81,9 @@ public class InfoBidangActivity extends TemplateActivity {
 
                 sb.delete(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1);
 
-                nama_bidang_desc.setText(res.payload.nama_bidang);
-                nama_ketua_bidang_desc.setText(res.payload.nama_ketua_bidang);
-                nama_pengurus_bidang_desc.setText(sb.toString());
+                namaBidangDesc.setText(res.payload.nama_bidang);
+                namaKetuaBidangDesc.setText(res.payload.nama_ketua_bidang);
+                namaPengurusBidangDesc.setText(sb.toString());
             }
 
             @Override

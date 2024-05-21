@@ -28,7 +28,7 @@ public class AddProkerActivity extends TemplateActivity {
     private EditText namaProkerField;
     private Spinner namaPengurusSpinner, jenisProkerSpinner;
     private Button addButton;
-    private ImageView backImage, pilihJadwalImage;
+    private ImageView pilihJadwalImage;
     private BaseApiService apiService;
     private Context ctx = this;
     @Override
@@ -38,7 +38,6 @@ public class AddProkerActivity extends TemplateActivity {
 
         apiService = UtilsApi.getApiService();
         namaProkerField = findViewById(R.id.AddProker_namaProkerField);
-        backImage = findViewById(R.id.backImage);
         pilihJadwalImage = findViewById(R.id.AddProker_pilihJadwalImage);
         addButton = findViewById(R.id.AddProker_addButton);
         namaPengurusSpinner = findViewById(R.id.AddProker_namaPengurusSpinner);
@@ -75,6 +74,12 @@ public class AddProkerActivity extends TemplateActivity {
             handleAddProker();
             moveActivity(MainActivity.class);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(MainActivity.class);
     }
 
     public void handleGetBidang() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
     tools:context=".activity.TimeplanDateDetailsActivity">
 
     <ImageView
@@ -19,15 +19,6 @@
         app:layout_constraintVertical_bias="0.087"
         app:srcCompat="@mipmap/logo_ime_background" />
 
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
         android:layout_height="375dp"
@@ -39,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoImage5">
 
         <ListView
-            android:id="@+id/prokerListTimeplanDateDetails"
+            android:id="@+id/TimeplanDateDetails_prokerList"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"

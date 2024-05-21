@@ -4,17 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
     tools:context=".activity.LoginBidangActivity">
-
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
 
     <ImageView
         android:id="@+id/logoImage2"
@@ -29,7 +20,7 @@
         app:srcCompat="@mipmap/logo_ime_background" />
 
     <Button
-        android:id="@+id/loginButtonLoginBidang"
+        android:id="@+id/LoginBidang_loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -44,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
         app:strokeColor="#FFC107"
-        app:strokeWidth="2dp"/>
+        app:strokeWidth="2dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -57,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoImage2">
 
         <TextView
-            android:id="@+id/registerBidangTextLoginBidang"
+            android:id="@+id/LoginBidang_registerBidangText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -71,10 +62,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordBidangFieldLoginBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/LoginBidang_passwordBidangField" />
 
         <EditText
-            android:id="@+id/namaBidangFieldLoginBidang"
+            android:id="@+id/LoginBidang_namaBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -95,7 +86,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/passwordBidangFieldLoginBidang"
+            android:id="@+id/LoginBidang_passwordBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -113,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaBidangFieldLoginBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/LoginBidang_namaBidangField" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

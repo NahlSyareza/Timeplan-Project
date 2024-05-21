@@ -1,7 +1,5 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,8 +14,8 @@ import java.util.List;
 
 public class TimeplanProkerMilestoneActivity extends TemplateActivity {
 
-    private ImageView back_image, add_milestone;
-    private ListView milestone_list;
+    private ImageView addMilestone;
+    private ListView milestoneList;
     private BaseApiService apiService;
 
     @Override
@@ -26,9 +24,8 @@ public class TimeplanProkerMilestoneActivity extends TemplateActivity {
         setContentView(R.layout.activity_timeplan_proker_milestone);
 
         apiService = UtilsApi.getApiService();
-        back_image = findViewById(R.id.backImage);
-        milestone_list = findViewById(R.id.milestoneListTimeplanProkerMilestone);
-        add_milestone = findViewById(R.id.addMilestoneImageTimeplanProkerMilestone);
+        milestoneList = findViewById(R.id.TimeplanProkerMilestone_milestoneList);
+        addMilestone = findViewById(R.id.TimeplanProkerMilestoneaddMilestoneImage);
 
         List<String> list = new ArrayList<>();
         list.add("Nahl");
@@ -38,10 +35,12 @@ public class TimeplanProkerMilestoneActivity extends TemplateActivity {
         list.add("Rendezvous");
         list.add("Neural Theft");
         list.add("Cyber Cage");
-        milestone_list.setAdapter(new SimpleAdapter<>(this, list));
+        milestoneList.setAdapter(new SimpleAdapter<>(this, list));
+    }
 
-        back_image.setOnClickListener(view -> {
-            moveActivity(PREVIOUS_CLASS);
-        });
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveActivity(PREVIOUS_CLASS);
     }
 }

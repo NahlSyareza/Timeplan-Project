@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
     tools:context=".activity.RegisterBidangActivity">
 
     <ImageView
@@ -20,7 +20,7 @@
         app:srcCompat="@mipmap/logo_ime_background" />
 
     <Button
-        android:id="@+id/registerButtonRegisterBidang"
+        android:id="@+id/RegisterBidang_registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -37,15 +37,6 @@
         app:strokeColor="#FFC107"
         app:strokeWidth="2dp" />
 
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="300dp"
@@ -58,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoImage2">
 
         <EditText
-            android:id="@+id/namaBidangFieldRegisterBidang"
+            android:id="@+id/RegisterBidang_namaBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -78,7 +69,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/namaKetuaBidangFieldRegisterBidang"
+            android:id="@+id/RegisterBidang_namaKetuaBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -95,10 +86,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordBidangFieldRegisterBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/RegisterBidang_passwordBidangField" />
 
         <EditText
-            android:id="@+id/namaPengurusBidangFieldRegisterBidang"
+            android:id="@+id/RegisterBidang_namaPengurusBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -118,10 +109,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaKetuaBidangFieldRegisterBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/RegisterBidang_namaKetuaBidangField" />
 
         <EditText
-            android:id="@+id/passwordBidangFieldRegisterBidang"
+            android:id="@+id/RegisterBidang_passwordBidangField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -138,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaBidangFieldRegisterBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/RegisterBidang_namaBidangField" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

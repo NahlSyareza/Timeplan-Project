@@ -4,20 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_general_background"
+    android:background="@drawable/generic_background"
     tools:context=".activity.InfoBidangActivity">
 
     <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back"
-        app:tint="#FFC107" />
-
-    <ImageView
-        android:id="@+id/logoBidangImageInfoBidang"
+        android:id="@+id/InfoBidang_logoBidangImage"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="62dp"
@@ -35,10 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoBidangImageInfoBidang">
+        app:layout_constraintTop_toBottomOf="@+id/InfoBidang_logoBidangImage">
 
         <TextView
-            android:id="@+id/namaBidangTextInfoBidang"
+            android:id="@+id/InfoBidang_namaBidangText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -52,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/namaPengurusBidangDescTextInfoBidang"
+            android:id="@+id/InfoBidang_namaPengurusBidangDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -65,10 +56,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaPengurusBidangTextInfoBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoBidang_namaPengurusBidangText" />
 
         <TextView
-            android:id="@+id/namaKetuaBidangTextInfoBidang"
+            android:id="@+id/InfoBidang_namaKetuaBidangText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -79,10 +70,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaBidangDescTextInfoBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoBidang_namaBidangDesc" />
 
         <TextView
-            android:id="@+id/namaPengurusBidangTextInfoBidang"
+            android:id="@+id/InfoBidang_namaPengurusBidangText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -94,10 +85,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaKetuaBidangDescTextInfoBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoBidang_namaKetuaBidangDesc" />
 
         <TextView
-            android:id="@+id/namaBidangDescTextInfoBidang"
+            android:id="@+id/InfoBidang_namaBidangDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -107,10 +98,10 @@
             android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaBidangTextInfoBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoBidang_namaBidangText" />
 
         <TextView
-            android:id="@+id/namaKetuaBidangDescTextInfoBidang"
+            android:id="@+id/InfoBidang_namaKetuaBidangDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -120,11 +111,11 @@
             android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaKetuaBidangTextInfoBidang" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoBidang_namaKetuaBidangText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/logoutImageInfoBidang"
+        android:id="@+id/InfoBidang_logoutImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="180dp"
@@ -135,7 +126,7 @@
         app:tint="#FFC107" />
 
     <ImageView
-        android:id="@+id/listProkerImageInfoBidang"
+        android:id="@+id/InfoBidang_listProkerImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="44dp"
@@ -146,14 +137,14 @@
         app:tint="#FFC107" />
 
     <ImageView
-        android:id="@+id/editBidangImageInfoBidang"
+        android:id="@+id/InfoBidang_editBidangImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="62dp"
-        app:tint="#FFC107"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_edit_24" />
+        app:srcCompat="@drawable/baseline_edit_24"
+        app:tint="#FFC107" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
