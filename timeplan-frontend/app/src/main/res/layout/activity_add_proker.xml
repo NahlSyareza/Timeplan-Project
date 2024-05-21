@@ -33,13 +33,13 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#1b1b1b"
+        android:background="@drawable/rounded_rectangle_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage6">
 
         <EditText
-            android:id="@+id/namaProkerFieldAddProker"
+            android:id="@+id/AddProker_namaProkerField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -58,17 +58,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/pilihJadwalImageAddProker"
+            android:id="@+id/AddProker_pilihJadwalImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jenisProkerSpinnerAddProker"
+            app:layout_constraintTop_toBottomOf="@+id/AddProker_jenisProkerSpinner"
             app:srcCompat="@drawable/baseline_calendar_today_24" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/AddProker_pilihJadwalText"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
@@ -81,29 +81,29 @@
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pilihJadwalImageAddProker" />
+            app:layout_constraintTop_toBottomOf="@+id/AddProker_pilihJadwalImage" />
 
         <Spinner
-            android:id="@+id/namaPengurusSpinnerAddProker"
+            android:id="@+id/AddProker_namaPengurusSpinner"
             android:layout_width="262dp"
             android:layout_height="65dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaProkerFieldAddProker" />
+            app:layout_constraintTop_toBottomOf="@+id/AddProker_namaProkerField" />
 
         <Spinner
-            android:id="@+id/jenisProkerSpinnerAddProker"
+            android:id="@+id/AddProker_jenisProkerSpinner"
             android:layout_width="262dp"
             android:layout_height="65dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/namaPengurusSpinnerAddProker" />
+            app:layout_constraintTop_toBottomOf="@+id/AddProker_namaPengurusSpinner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/addButtonAddProker"
+        android:id="@+id/AddProker_addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

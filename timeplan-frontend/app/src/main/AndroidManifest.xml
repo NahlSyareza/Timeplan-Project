@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.TimeplanProkerMilestoneActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.EditBidangActivity"
             android:exported="false" />
         <activity

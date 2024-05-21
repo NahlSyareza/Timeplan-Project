@@ -36,6 +36,10 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
         back_image.setOnClickListener(view -> {
             moveActivity(TimeplanCalendarActivity.class);
         });
+
+        milestone_proker_image.setOnClickListener(view -> {
+            moveActivity(TimeplanProkerMilestoneActivity.class);
+        });
     }
 
     public void handleGetProker() {

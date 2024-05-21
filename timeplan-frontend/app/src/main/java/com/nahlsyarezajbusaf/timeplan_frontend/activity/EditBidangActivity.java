@@ -77,7 +77,12 @@ public class EditBidangActivity extends TemplateActivity {
     }
 
     public void handleEditBidang() {
-        apiService.editBidang(StaticUtils.LOGGED_BIDANG, nama_bidang_field.getText().toString(), "chamber", "Nahl Syareza", new String[]{"Shofiyah", "Rakha Raditya", "Ilham Ramadhan", "Damien Oktavius"}).enqueue(new Callback<BaseResponse<Bidang>>() {
+        String nama_bidang = nama_bidang_field.getText().toString();
+        String password_bidang = password_bidang_field.getText().toString();
+        String nama_ketua_bidang = nama_ketua_bidang_field.getText().toString();
+        String[] nama_pengurus_bidang = nama_pengurus_bidang_field.getText().toString().split("\n");
+
+        apiService.editBidang(StaticUtils.LOGGED_BIDANG, nama_bidang, password_bidang, nama_ketua_bidang, nama_pengurus_bidang).enqueue(new Callback<BaseResponse<Bidang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Bidang>> call, Response<BaseResponse<Bidang>> response) {
                 if(!response.isSuccessful()) {

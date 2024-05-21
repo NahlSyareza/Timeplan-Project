@@ -20,7 +20,7 @@ public class StaticUtils {
     public static boolean SELECT_EXECUTION_MODE = false;
     public static boolean SHOW_OWNED = false;
     public static boolean SHOW_ACTIVITIES_COLOR = false;
-    public static int MONTH_ARRAY_INDEX = 0;
+    public static int CURRENT_BULAN_INDEX = 0;
     public static String LOGGED_BIDANG = "NONE";
     public static Bulan CURRENT_MONTH = Bulan.JANUARI;
     public static List<ProkerDisplay> ICBM_PROKER_DISPLAY_LIST = new ArrayList<>();
@@ -68,6 +68,6 @@ public class StaticUtils {
         map.put(Bulan.NOVEMBER, 30);
         map.put(Bulan.DESEMBER, 31);
 
-        return  map;
+        return map;
     }
 }

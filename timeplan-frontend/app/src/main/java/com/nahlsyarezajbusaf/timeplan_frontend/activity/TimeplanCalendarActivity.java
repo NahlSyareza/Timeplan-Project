@@ -58,7 +58,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
         StaticUtils.handleMonthDates(month_map);
         logo_bidang.setImageResource(StaticUtils.handleBidangProfile(StaticUtils.LOGGED_BIDANG));
-        bulan_button.setText(month_array[StaticUtils.MONTH_ARRAY_INDEX].name());
+        bulan_button.setText(month_array[StaticUtils.CURRENT_BULAN_INDEX].name());
 
         if (StaticUtils.SHOW_OWNED) {
             show_owned.setColorFilter(BRIGHT_COLOR);
@@ -97,19 +97,19 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         });
 
         next_bulan_button.setOnClickListener(view -> {
-            if (StaticUtils.MONTH_ARRAY_INDEX < 11) {
-                StaticUtils.MONTH_ARRAY_INDEX++;
+            if (StaticUtils.CURRENT_BULAN_INDEX < 11) {
+                StaticUtils.CURRENT_BULAN_INDEX++;
             }
-            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.MONTH_ARRAY_INDEX];
+            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.CURRENT_BULAN_INDEX];
             CONTROL_VAR = true;
             moveActivity(TimeplanCalendarActivity.class);
         });
 
         back_bulan_button.setOnClickListener(view -> {
-            if (StaticUtils.MONTH_ARRAY_INDEX > 0) {
-                StaticUtils.MONTH_ARRAY_INDEX--;
+            if (StaticUtils.CURRENT_BULAN_INDEX > 0) {
+                StaticUtils.CURRENT_BULAN_INDEX--;
             }
-            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.MONTH_ARRAY_INDEX];
+            StaticUtils.CURRENT_MONTH = month_array[StaticUtils.CURRENT_BULAN_INDEX];
             CONTROL_VAR = true;
             moveActivity(TimeplanCalendarActivity.class);
         });
@@ -170,7 +170,14 @@ public class TimeplanCalendarActivity extends TemplateActivity {
             int st = getIndex(month_array, pd.bulan_start);
             int ed = getIndex(month_array, pd.bulan_end);
 
-            if (st == StaticUtils.MONTH_ARRAY_INDEX) {
+            if (st == StaticUtils.CURRENT_BULAN_INDEX && ed == StaticUtils.CURRENT_BULAN_INDEX) {
+                if (StaticUtils.SHOW_OWNED) {
+                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
+                        relevant_proker_display.add(pd);
+                } else {
+                    relevant_proker_display.add(pd);
+                }
+            } else if (st == StaticUtils.CURRENT_BULAN_INDEX) {
                 pd.tanggal_end = 31;
                 if (StaticUtils.SHOW_OWNED) {
                     if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
@@ -178,7 +185,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
                 } else {
                     relevant_proker_display.add(pd);
                 }
-            } else if (ed == StaticUtils.MONTH_ARRAY_INDEX) {
+            } else if (ed == StaticUtils.CURRENT_BULAN_INDEX) {
                 pd.tanggal_start = 1;
                 if (StaticUtils.SHOW_OWNED) {
                     if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
@@ -186,16 +193,9 @@ public class TimeplanCalendarActivity extends TemplateActivity {
                 } else {
                     relevant_proker_display.add(pd);
                 }
-            } else if (st < StaticUtils.MONTH_ARRAY_INDEX && StaticUtils.MONTH_ARRAY_INDEX < ed) {
+            } else if (st < StaticUtils.CURRENT_BULAN_INDEX && StaticUtils.CURRENT_BULAN_INDEX < ed) {
                 pd.tanggal_start = 1;
                 pd.tanggal_end = 31;
-                if (StaticUtils.SHOW_OWNED) {
-                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
-                        relevant_proker_display.add(pd);
-                } else {
-                    relevant_proker_display.add(pd);
-                }
-            } else if (st == StaticUtils.MONTH_ARRAY_INDEX && ed == StaticUtils.MONTH_ARRAY_INDEX) {
                 if (StaticUtils.SHOW_OWNED) {
                     if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
                         relevant_proker_display.add(pd);
@@ -207,7 +207,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
         if (CONTROL_VAR) {
             StringBuilder sb = new StringBuilder();
-            sb.append(month_array[StaticUtils.MONTH_ARRAY_INDEX]).append(": ");
+            sb.append(month_array[StaticUtils.CURRENT_BULAN_INDEX]).append(": ");
             for (ProkerDisplay pd : relevant_proker_display) {
                 sb.append(pd.nama_proker).append(" (").append(pd.tanggal_start).append(" - ").append(pd.tanggal_end).append("), ");
             }
@@ -224,7 +224,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
         TextView text = new TextView(this);
         text.setText(String.valueOf(index));
-        text.setTextColor(Color.BLACK);
+        text.setTextColor(Color.rgb(255, 193, 7));
         text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         IdentityImageView image = new IdentityImageView(index, this, proker_list);
         image.setOnClickListener(view -> {
@@ -249,12 +249,14 @@ public class TimeplanCalendarActivity extends TemplateActivity {
             }
         });
 
-        if (image.proker_list.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
-            image.setColorFilter(Color.RED);
-        } else if (image.proker_list.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
-            image.setColorFilter(Color.YELLOW);
-        } else if (image.proker_list.size() >= 1) {
-            image.setColorFilter(Color.GREEN);
+//        if (image.proker_list.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+//            image.setColorFilter(Color.RED);
+//        } else if (image.proker_list.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+//            image.setColorFilter(Color.YELLOW);
+//        } else
+        if (image.proker_list.size() >= 1) {
+            text.setTextColor(Color.rgb(27, 27, 27));
+            image.setColorFilter(Color.rgb(255, 193, 7));
         }
 
         int offset_x = 10;
@@ -285,111 +287,4 @@ public class TimeplanCalendarActivity extends TemplateActivity {
 
         return index;
     }
-
-    /*
-        List<ProkerDisplay> relevant_proker_display = new ArrayList<>();
-        List<ProkerDisplay> proker_list = new ArrayList<>();
-
-        for (ProkerDisplay pd : proker_display_list) {
-            if (pd.bulan_start.equals(pd.bulan_end)) {
-                if (pd.bulan_start.equals(StaticUtils.CURRENT_MONTH)) {
-                    if (StaticUtils.SHOW_OWNED) {
-                        if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG)) {
-                            relevant_proker_display.add(pd);
-                        }
-                    } else {
-                        relevant_proker_display.add(pd);
-                    }
-                }
-            } else {
-                int original_tanggal_end = pd.tanggal_end;
-                int original_tanggal_start = pd.tanggal_start;
-
-                if (pd.bulan_start.equals(StaticUtils.CURRENT_MONTH)) {
-                    if (StaticUtils.SHOW_OWNED) {
-                        if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG)) {
-                            relevant_proker_display.add(pd);
-                            pd.tanggal_start = original_tanggal_start;
-                            pd.tanggal_end = 31;
-                        }
-                    } else {
-                        relevant_proker_display.add(pd);
-                        pd.tanggal_start = original_tanggal_start;
-                        pd.tanggal_end = 31;
-                    }
-                }
-
-                if (pd.bulan_end.equals(StaticUtils.CURRENT_MONTH)) {
-                    if (StaticUtils.SHOW_OWNED) {
-                        if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG)) {
-                            relevant_proker_display.add(pd);
-                            pd.tanggal_start = 1;
-                            pd.tanggal_end = original_tanggal_end;
-                        }
-                    } else {
-                        relevant_proker_display.add(pd);
-                        pd.tanggal_start = 1;
-                        pd.tanggal_end = original_tanggal_end;
-                    }
-                }
-            }
-        }
-
-        for (ProkerDisplay pd : relevant_proker_display) {
-            if (index >= pd.tanggal_start && index <= pd.tanggal_end) {
-                proker_list.add(pd);
-            }
-        }
-
-        TextView text = new TextView(this);
-        text.setText(String.valueOf(index));
-        text.setTextColor(Color.BLACK);
-        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        IdentityImageView image = new IdentityImageView(index, this, proker_list);
-        image.setOnClickListener(view -> {
-            if (!StaticUtils.SELECT_EXECUTION_MODE) {
-                StaticUtils.ICBM_PROKER_DISPLAY_LIST = image.proker_list;
-                moveActivity(TimeplanDateDetailsActivity.class);
-            } else {
-                if (StaticUtils.SELECT_EXECUTION_STATE == 0) {
-                    StaticUtils.SELECTED_BULAN_START = StaticUtils.CURRENT_MONTH;
-                    StaticUtils.SELECTED_TANGGAL_START = index;
-                    StaticUtils.SELECT_EXECUTION_STATE++;
-                    image.setColorFilter(Color.GRAY);
-                } else {
-                    StaticUtils.SELECTED_BULAN_END = StaticUtils.CURRENT_MONTH;
-                    StaticUtils.SELECTED_TANGGAL_END = index;
-                    image.setColorFilter(Color.GRAY);
-                    StaticUtils.SELECT_EXECUTION_STATE = 0;
-                    StaticUtils.SELECT_EXECUTION_MODE = false;
-                    moveActivity(AddProkerActivity.class);
-                }
-
-            }
-        });
-
-        if (image.proker_list.size() >= 3) {
-            image.setColorFilter(Color.RED);
-        } else if (image.proker_list.size() == 2) {
-            image.setColorFilter(Color.YELLOW);
-        } else if (image.proker_list.size() == 1){
-            image.setColorFilter(Color.GREEN);
-        }
-
-        int offset_x = 10;
-        int offset_y = 300;
-        int gap = 190;
-
-        image.setImageResource(R.drawable.calendar_square);
-        text.setScaleX(1.0F);
-        text.setScaleY(1.0F);
-        image.setScaleX(3.75F);
-        image.setScaleY(3.75F);
-        text.setX(80 + offset_x + (gap * i));
-        text.setY(1080 - offset_y + (gap * j));
-        image.setX(130 + offset_x + (gap * i));
-        image.setY(1125 - offset_y + (gap * j));
-        layout.addView(image);
-        layout.addView(text);
-     */
 }

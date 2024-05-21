@@ -32,7 +32,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#1b1b1b"
+        android:background="@drawable/rounded_rectangle_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage3">
@@ -42,22 +42,22 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            app:tint="#FFC107"
             app:layout_constraintEnd_toEndOf="@+id/viewTimeplanTextMain"
             app:layout_constraintStart_toStartOf="@+id/viewTimeplanTextMain"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_calendar_today_24" />
+            app:srcCompat="@drawable/baseline_calendar_today_24"
+            app:tint="#FFC107" />
 
         <ImageView
             android:id="@+id/addTimeplanImageMain"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            app:tint="#FFC107"
             app:layout_constraintEnd_toEndOf="@+id/addTimeplanTextMain"
             app:layout_constraintStart_toStartOf="@+id/addTimeplanTextMain"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_edit_calendar_24" />
+            app:srcCompat="@drawable/baseline_edit_calendar_24"
+            app:tint="#FFC107" />
 
         <TextView
             android:id="@+id/viewTimeplanTextMain"
