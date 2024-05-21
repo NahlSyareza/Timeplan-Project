@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background_general_background"
+    tools:context=".activity.MainActivity">
+
+    <ImageView
+        android:id="@+id/logoImage3"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="62dp"
+        android:alpha="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo_ime_background" />
+
+    <ImageView
+        android:id="@+id/logoBidangImageMain"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_person_24" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="#1b1b1b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage3">
+
+        <ImageView
+            android:id="@+id/viewTimeplanImageMain"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            app:tint="#FFC107"
+            app:layout_constraintEnd_toEndOf="@+id/viewTimeplanTextMain"
+            app:layout_constraintStart_toStartOf="@+id/viewTimeplanTextMain"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_calendar_today_24" />
+
+        <ImageView
+            android:id="@+id/addTimeplanImageMain"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            app:tint="#FFC107"
+            app:layout_constraintEnd_toEndOf="@+id/addTimeplanTextMain"
+            app:layout_constraintStart_toStartOf="@+id/addTimeplanTextMain"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_edit_calendar_24" />
+
+        <TextView
+            android:id="@+id/viewTimeplanTextMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/sfprodisplay"
+            android:text="View Timeplan"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewTimeplanImageMain" />
+
+        <TextView
+            android:id="@+id/addTimeplanTextMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/sfprodisplay"
+            android:text="Add Timeplan"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addTimeplanImageMain" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
