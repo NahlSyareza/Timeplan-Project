@@ -1,5 +1,7 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,12 +46,6 @@ public class LoginBidangActivity extends TemplateActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(MainActivity.class);
-    }
-
     public void handleLoginBidang() {
         String namaBidang = namaBidangField.getText().toString().toUpperCase();
         String passwordBidang = passwordBidangField.getText().toString();
@@ -68,6 +64,10 @@ public class LoginBidangActivity extends TemplateActivity {
 
                 if (res.state) {
                     StaticUtils.LOGGED_BIDANG = namaBidang;
+                    if (namaBidang.equals("PIPTEK")) {
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.you_have_good_taste);
+                        mediaPlayer.start();
+                    }
                     moveActivity(MainActivity.class);
                 }
             }

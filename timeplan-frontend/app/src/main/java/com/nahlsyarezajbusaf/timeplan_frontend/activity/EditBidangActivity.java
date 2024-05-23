@@ -45,12 +45,6 @@ public class EditBidangActivity extends TemplateActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(MainActivity.class);
-    }
-
     public void handleEditProker() {
         apiService.editProker(StaticUtils.LOGGED_BIDANG, namaBidangField.getText().toString()).enqueue(new Callback<BaseResponse<Proker>>() {
             @Override

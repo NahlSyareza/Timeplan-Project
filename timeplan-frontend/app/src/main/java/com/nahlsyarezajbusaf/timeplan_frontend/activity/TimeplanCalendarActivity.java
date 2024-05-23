@@ -118,12 +118,6 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         handleGetProkerDisplay();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(MainActivity.class);
-    }
-
     public void handleGetProkerDisplay() {
         apiService.getProkerDisplay().enqueue(new Callback<BaseResponse<List<ProkerDisplay>>>() {
             @Override
@@ -246,31 +240,38 @@ public class TimeplanCalendarActivity extends TemplateActivity {
             }
         });
 
-//        if (image.proker_list.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
-//            image.setColorFilter(Color.RED);
-//        } else if (image.proker_list.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
-//            image.setColorFilter(Color.YELLOW);
-//        } else
-        if (image.proker_list.size() >= 1) {
-            text.setTextColor(Color.rgb(27, 27, 27));
-            image.setColorFilter(Color.rgb(255, 193, 7));
-        }
+        int txtOffsetX = 10;
+        int txtOffsetY = 300;
+        int txtGap = 190;
+        int imgOffsetX = -60;
+        int imgOffsetY = 350;
+        int imgGap = 190;
 
-        int offset_x = 10;
-        int offset_y = 300;
-        int gap = 190;
-
-        image.setImageResource(R.drawable.calendar_square);
+        image.setImageResource(R.drawable.rounded_rectangle_background);
+//        image.setMinimumHeight(180);
+//        image.setMinimumWidth(180);
         text.setScaleX(1.0F);
         text.setScaleY(1.0F);
-        image.setScaleX(3.75F);
-        image.setScaleY(3.75F);
-        text.setX(80 + offset_x + (gap * i));
-        text.setY(1080 - offset_y + (gap * j));
-        image.setX(130 + offset_x + (gap * i));
-        image.setY(1125 - offset_y + (gap * j));
+        float imageScale = 1.0F;
+        image.setScaleX(imageScale);
+        image.setScaleY(imageScale);
+        text.setX(80 + txtOffsetX + (txtGap * i));
+        text.setY(1080 - txtOffsetY + (txtGap * j));
+        image.setX(130 + imgOffsetX + (imgGap * i));
+        image.setY(1125 - imgOffsetY + (imgGap * j));
         layout.addView(image);
         layout.addView(text);
+
+        if (image.proker_list.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+            text.setTextColor(Color.rgb(27, 27, 27));
+            image.setImageResource(R.drawable.level_3_critical);
+        } else if (image.proker_list.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+            text.setTextColor(Color.rgb(27, 27, 27));
+            image.setImageResource(R.drawable.level_2_warning);
+        } else if (image.proker_list.size() >= 1) {
+            text.setTextColor(Color.rgb(27, 27, 27));
+            image.setImageResource(R.drawable.level_1_alert);
+        }
     }
 
     public static <T> int getIndex(T[] array, T find) {

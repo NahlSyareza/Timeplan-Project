@@ -76,12 +76,6 @@ public class AddProkerActivity extends TemplateActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(MainActivity.class);
-    }
-
     public void handleGetBidang() {
         String nama_bidang = StaticUtils.LOGGED_BIDANG;
 

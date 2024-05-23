@@ -30,23 +30,17 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
         steeringComitteeDesc = findViewById(R.id.TimeplanProkerDetails_steeringComitteeDesc);
         milestoneProkerImage = findViewById(R.id.TimeplanProkerDetails_milestoneProkerImage);
 
-        handleGetProker();
+        getNamaProker();
 
         milestoneProkerImage.setOnClickListener(view -> {
             moveActivity(TimeplanProkerMilestoneActivity.class);
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(TimeplanCalendarActivity.class);
-    }
+    public void getNamaProker() {
+        String namaProker = StaticUtils.SELECTED_PROKER;
 
-    public void handleGetProker() {
-        String nama_proker = StaticUtils.SELECTED_PROKER;
-
-        apiService.getProker(nama_proker).enqueue(new Callback<BaseResponse<Proker>>() {
+        apiService.getNamaProker(namaProker).enqueue(new Callback<BaseResponse<Proker>>() {
             @Override
             public void onResponse(Call<BaseResponse<Proker>> call, Response<BaseResponse<Proker>> response) {
                 if(!response.isSuccessful()) {

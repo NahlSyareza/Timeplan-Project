@@ -24,10 +24,4 @@ public class TimeplanDateDetailsActivity extends TemplateActivity {
 
         prokerList.setAdapter(new ProkerDisplayAdapter(this, StaticUtils.ICBM_PROKER_DISPLAY_LIST));
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(TimeplanCalendarActivity.class);
-    }
 }

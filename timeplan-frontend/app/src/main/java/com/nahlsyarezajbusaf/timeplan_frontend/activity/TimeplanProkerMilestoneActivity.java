@@ -37,10 +37,4 @@ public class TimeplanProkerMilestoneActivity extends TemplateActivity {
         list.add("Cyber Cage");
         milestoneList.setAdapter(new SimpleAdapter<>(this, list));
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(PREVIOUS_CLASS);
-    }
 }

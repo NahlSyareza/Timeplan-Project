@@ -47,19 +47,24 @@ public interface BaseApiService {
 
     @POST("proker/addProker")
     Call<BaseResponse<Proker>> addProker(
-            @Query("nama_bidang") String nama_bidang,
-            @Query("nama_proker") String nama_proker,
-            @Query("steering_comittee") String steering_comittee,
-            @Query("jenis_proker") JenisProker jenis_proker,
-            @Query("tanggal_start") int tanggal_start,
-            @Query("bulan_start") Bulan bulan_start,
-            @Query("tanggal_end") int tanggal_end,
-            @Query("bulan_end") Bulan bulan_end
+            @Query("namaBidang") String namaBidang,
+            @Query("namaProker") String namaProker,
+            @Query("steeringComittee") String steeringComittee,
+            @Query("jenisProker") JenisProker jenisProker,
+            @Query("tanggalStart") int tanggalStart,
+            @Query("bulanStart") Bulan bulanStart,
+            @Query("tanggalEnd") int tanggalEnd,
+            @Query("bulanEnd") Bulan bulanEnd
     );
 
-    @GET("proker/getProker")
-    Call<BaseResponse<Proker>> getProker(
-        @Query("nama_proker") String nama_proker
+    @GET("proker/getNamaProker")
+    Call<BaseResponse<Proker>> getNamaProker(
+        @Query("namaProker") String namaProker
+    );
+
+    @GET("proker/getBidangProker")
+    Call<BaseResponse<List<Proker>>> getBidangProker(
+            @Query("namaBidang") String namaBidang
     );
 
     @GET("proker/getProkerDisplay")
@@ -68,7 +73,7 @@ public interface BaseApiService {
 
     @POST("proker/editProker")
     Call<BaseResponse<Proker>> editProker(
-        @Query("nama_bidang_old") String nama_bidang_old,
-        @Query("nama_bidang_new") String nama_bidang_new
+        @Query("namaBidangOld") String namaBidangOld,
+        @Query("namaBidangNew") String namaBidangNew
     );
 }

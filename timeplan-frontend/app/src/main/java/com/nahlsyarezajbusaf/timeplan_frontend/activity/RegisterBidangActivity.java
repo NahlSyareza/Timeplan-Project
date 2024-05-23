@@ -37,12 +37,6 @@ public class RegisterBidangActivity extends TemplateActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(LoginBidangActivity.class);
-    }
-
     public void handleAddBidang() {
         String nama_bidang = namaBidangField.getText().toString();
         String password_bidang = passwordBidangField.getText().toString();

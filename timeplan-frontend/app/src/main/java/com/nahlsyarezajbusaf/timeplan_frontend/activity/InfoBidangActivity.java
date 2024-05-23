@@ -44,6 +44,7 @@ public class InfoBidangActivity extends TemplateActivity {
         });
 
         listProkerImage.setOnClickListener(view -> {
+            moveActivity(ListProkerBidangActivity.class);
         });
 
         logoutImage.setOnClickListener(view -> {
@@ -51,12 +52,6 @@ public class InfoBidangActivity extends TemplateActivity {
             StaticUtils.LOGGED_BIDANG = "NONE";
             viewToast("Bidang berhasil logout!");
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveActivity(PREVIOUS_CLASS);
     }
 
     public void handleGetBidang() {

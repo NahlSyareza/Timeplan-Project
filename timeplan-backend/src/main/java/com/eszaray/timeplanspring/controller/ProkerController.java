@@ -17,14 +17,14 @@ public class ProkerController {
 
     @PostMapping("/addProker")
     BaseResponse<Proker> addProker(
-            @RequestParam String nama_bidang,
-            @RequestParam String nama_proker,
-            @RequestParam String steering_comittee,
-            @RequestParam JenisProker jenis_proker,
-            @RequestParam int tanggal_start,
-            @RequestParam Bulan bulan_start,
-            @RequestParam int tanggal_end,
-            @RequestParam Bulan bulan_end
+            @RequestParam String namaBidang,
+            @RequestParam String namaProker,
+            @RequestParam String steeringComittee,
+            @RequestParam JenisProker jenisProker,
+            @RequestParam int tanggalStart,
+            @RequestParam Bulan bulanStart,
+            @RequestParam int tanggalEnd,
+            @RequestParam Bulan bulanEnd
     ) {
         var query1 = "INSERT INTO proker_ime VALUES (?,?,?,?::JENIS);";
         var query2 = "INSERT INTO proker_per_bulan VALUES (?,?,?,?::BULAN,?,?::BULAN);";
@@ -33,22 +33,22 @@ public class ProkerController {
             PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
             PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
 
-            request1.setString(1, nama_bidang.toUpperCase());
-            request1.setString(2, nama_proker);
-            request1.setString(3, steering_comittee);
-            request1.setString(4, jenis_proker.name());
+            request1.setString(1, namaBidang.toUpperCase());
+            request1.setString(2, namaProker);
+            request1.setString(3, steeringComittee);
+            request1.setString(4, jenisProker.name());
 
-            request2.setString(1, nama_bidang.toUpperCase());
-            request2.setString(2, nama_proker);
-            request2.setInt(3, tanggal_start);
-            request2.setString(4, bulan_start.name());
-            request2.setInt(5, tanggal_end);
-            request2.setString(6, bulan_end.name());
+            request2.setString(1, namaBidang.toUpperCase());
+            request2.setString(2, namaProker);
+            request2.setInt(3, tanggalStart);
+            request2.setString(4, bulanStart.name());
+            request2.setInt(5, tanggalEnd);
+            request2.setString(6, bulanEnd.name());
 
             request1.executeUpdate();
             request2.executeUpdate();
 
-            return new BaseResponse<>(true, "Ditambahkan proker  " + nama_proker + " oleh bidang " + nama_bidang + "!", new Proker(nama_bidang, nama_proker, steering_comittee, jenis_proker));
+            return new BaseResponse<>(true, "Ditambahkan proker  " + namaProker + " oleh bidang " + namaBidang + "!", new Proker(namaBidang, namaProker, steeringComittee, jenisProker));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,16 +56,16 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
-    @GetMapping("/getProker")
-    BaseResponse<Proker> getProker(
-        @RequestParam String nama_proker
+    @GetMapping("/getNamaProker")
+    BaseResponse<Proker> getNamaProker(
+            @RequestParam String namaProker
     ) {
         var query = "SELECT * FROM proker_ime WHERE nama_proker=?";
 
         try (var connection = DatabaseConnect.connect()) {
             PreparedStatement request = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            request.setString(1, nama_proker);
+            request.setString(1, namaProker);
 
             var rs = request.executeQuery();
 
@@ -73,7 +73,7 @@ public class ProkerController {
 
             Proker proker = new Proker(rs.getString("nama_bidang"), rs.getString("nama_proker"), rs.getString("steering_comittee"), JenisProker.valueOf(rs.getString("jenis_proker")));
 
-            return new BaseResponse<>(true, "Berhasil mendapatkan proker " + nama_proker, proker);
+            return new BaseResponse<>(true, "Berhasil mendapatkan proker " + namaProker, proker);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,28 +81,28 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
-    @PostMapping("/editProker")
-    BaseResponse<Proker> editProker(
-            String nama_bidang_old,
-            String nama_bidang_new
+    @GetMapping("/getBidangProker")
+    BaseResponse<List<Proker>> getBidangProker(
+            @RequestParam String namaBidang
     ) {
-        var query1 = "UPDATE proker_ime SET nama_bidang=? WHERE nama_bidang=?";
-        var query2 = "UPDATE proker_per_bulan SET nama_bidang=? WHERE nama_bidang=?";
+        var query = "SELECT * FROM proker_ime WHERE nama_bidang=?";
 
         try (var connection = DatabaseConnect.connect()) {
-            PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            request1.setString(1, nama_bidang_new);
-            request1.setString(2, nama_bidang_old);
-            request2.setString(1, nama_bidang_new);
-            request2.setString(2, nama_bidang_old);
+            request.setString(1, namaBidang);
 
-            request1.executeUpdate();
-            request2.executeUpdate();
+            var rs = request.executeQuery();
 
-            return new BaseResponse<>(true, "Proker " + nama_bidang_old + " telah diedit!", null);
-        } catch(SQLException e) {
+            List<Proker> prokerList = new ArrayList<>();
+
+            while(rs.next()) {
+                Proker proker = new Proker(rs.getString("nama_bidang"), rs.getString("nama_proker"), rs.getString("steering_comittee"), JenisProker.valueOf(rs.getString("jenis_proker")));
+                prokerList.add(proker);
+            }
+
+            return new BaseResponse<>(true, "Berhasil mendapatkan seluruh proker bidang  " + namaBidang, prokerList);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -121,12 +121,40 @@ public class ProkerController {
 
             List<ProkerDisplay> list = new ArrayList<>();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 ProkerDisplay proker_display = new ProkerDisplay(rs.getString("nama_bidang"), rs.getString("nama_proker"), Bulan.valueOf(rs.getString("bulan_start")), Bulan.valueOf(rs.getString("bulan_end")), rs.getInt("tanggal_start"), rs.getInt("tanggal_end"));
                 list.add(proker_display);
             }
 
             return new BaseResponse<>(true, "Berhasil mendapatkan proker!", list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
+    }
+
+    @PostMapping("/editProker")
+    BaseResponse<Proker> editProker(
+            String namaBidangOld,
+            String namaBidangNew
+    ) {
+        var query1 = "UPDATE proker_ime SET nama_bidang=? WHERE nama_bidang=?";
+        var query2 = "UPDATE proker_per_bulan SET nama_bidang=? WHERE nama_bidang=?";
+
+        try (var connection = DatabaseConnect.connect()) {
+            PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+
+            request1.setString(1, namaBidangNew);
+            request1.setString(2, namaBidangOld);
+            request2.setString(1, namaBidangNew);
+            request2.setString(2, namaBidangOld);
+
+            request1.executeUpdate();
+            request2.executeUpdate();
+
+            return new BaseResponse<>(true, "Proker " + namaBidangOld + " telah diedit!", null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
