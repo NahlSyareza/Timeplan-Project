@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -73,6 +74,7 @@ public class MilestoneAdapter<T extends Milestone> extends ArrayAdapter<T> {
         namaMilestoneText.setOnClickListener(view -> {
             StaticUtils.SELECTED_MILESTONE_NAMA = namaMilestone;
             StaticUtils.SELECTED_MILESTONE_DESKRIPSI = deskripsiMilestone;
+            StaticUtils.SELECTED_MILESTONE_PROGRES = progresMilestone;
             moveActivity(ProkerMilestoneDetailsActivity.class);
 //            Log.i("CECEP", "You are currently clicking on " + position);
         });

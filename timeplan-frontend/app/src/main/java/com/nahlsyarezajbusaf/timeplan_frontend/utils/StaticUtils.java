@@ -3,6 +3,7 @@ package com.nahlsyarezajbusaf.timeplan_frontend.utils;
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Bulan;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
+import com.nahlsyarezajbusaf.timeplan_frontend.model.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class StaticUtils {
     public static String SELECTED_PROKER = "";
     public static String SELECTED_MILESTONE_DESKRIPSI = "";
     public static String SELECTED_MILESTONE_NAMA = "";
+    public static Status SELECTED_MILESTONE_PROGRES = Status.NO_DESC;
     public static String TEMP_NAMA_PROKER = "";
     public static int SELECT_EXECUTION_STATE = 0;
     public static Bulan SELECTED_BULAN_START = Bulan.JANUARI;

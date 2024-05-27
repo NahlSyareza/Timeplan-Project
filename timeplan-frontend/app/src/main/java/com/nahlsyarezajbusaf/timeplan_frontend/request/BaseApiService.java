@@ -8,6 +8,7 @@ import com.nahlsyarezajbusaf.timeplan_frontend.model.JenisProker;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Milestone;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Proker;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
+import com.nahlsyarezajbusaf.timeplan_frontend.model.Status;
 
 import java.util.List;
 
@@ -96,6 +97,7 @@ public interface BaseApiService {
     Call<BaseResponse<Milestone>> editProkerMilestone(
             @Query("namaProker") String namaProker,
             @Query("namaMilestone") String namaMilestone,
+            @Query("progresMilestone") Status progresMilestone,
             @Query("deskripsiMilestone") String deskripsiMilestone
     );
 

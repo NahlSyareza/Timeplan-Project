@@ -75,20 +75,22 @@ public class MilestoneController {
     BaseResponse<Milestone> editProkerMilestone(
             @RequestParam String namaProker,
             @RequestParam String namaMilestone,
+            @RequestParam Status progresMilestone,
             @RequestParam String deskripsiMilestone
     ) {
-        var query = "UPDATE milestone_proker_ime SET deskripsi_milestone=? WHERE nama_proker=? AND nama_milestone=?;";
+        var query = "UPDATE milestone_proker_ime SET deskripsi_milestone=?,progres_milestone=?::STATUS WHERE nama_proker=? AND nama_milestone=?;";
 
         try (var connection = DatabaseConnect.connect()) {
             PreparedStatement request = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             request.setString(1, deskripsiMilestone);
-            request.setString(2, namaProker);
-            request.setString(3, namaMilestone);
+            request.setString(2, progresMilestone.name());
+            request.setString(3, namaProker);
+            request.setString(4, namaMilestone);
 
             request.executeUpdate();
 
-            return new BaseResponse<>(true, "Milestone berhasil diedit!", new Milestone(namaProker, namaMilestone, Status.NO_DESC, deskripsiMilestone));
+            return new BaseResponse<>(true, "Milestone berhasil diedit!", new Milestone(namaProker, namaMilestone, progresMilestone, deskripsiMilestone));
         } catch (SQLException e) {
             e.printStackTrace();
         }
