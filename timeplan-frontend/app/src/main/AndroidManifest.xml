@@ -16,7 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.TimeplanProkerMilestoneActivity"
+            android:name=".activity.ProkerMilestoneDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddMilestoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ProkerMilestoneActivity"
             android:exported="false" />
         <activity
             android:name=".activity.EditBidangActivity"
@@ -28,13 +34,13 @@
             android:name=".activity.AddProkerActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TimeplanDateDetailsActivity"
+            android:name=".activity.DateDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TimeplanProkerDetailsActivity"
+            android:name=".activity.ProkerDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.InfoBidangActivity"
+            android:name=".activity.BidangDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.TimeplanCalendarActivity"

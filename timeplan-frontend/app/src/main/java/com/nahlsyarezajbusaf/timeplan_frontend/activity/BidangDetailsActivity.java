@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InfoBidangActivity extends TemplateActivity {
+public class BidangDetailsActivity extends TemplateActivity {
 
     private TextView namaBidangDesc, namaKetuaBidangDesc, namaPengurusBidangDesc;
     private ImageView logoBidangImage, logoutImage, listProkerImage, editBidangImage;
@@ -24,16 +24,16 @@ public class InfoBidangActivity extends TemplateActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_bidang);
+        setContentView(R.layout.activity_bidang_details);
 
         apiService = UtilsApi.getApiService();
-        logoBidangImage = findViewById(R.id.InfoBidang_logoBidangImage);
-        namaBidangDesc = findViewById(R.id.InfoBidang_namaBidangDesc);
-        namaKetuaBidangDesc = findViewById(R.id.InfoBidang_namaKetuaBidangDesc);
-        namaPengurusBidangDesc = findViewById(R.id.InfoBidang_namaPengurusBidangDesc);
-        logoutImage = findViewById(R.id.InfoBidang_logoutImage);
-        listProkerImage = findViewById(R.id.InfoBidang_listProkerImage);
-        editBidangImage = findViewById(R.id.InfoBidang_editBidangImage);
+        logoBidangImage = findViewById(R.id.BidangDetails_logoBidangImage);
+        namaBidangDesc = findViewById(R.id.BidangDetails_namaBidangDesc);
+        namaKetuaBidangDesc = findViewById(R.id.BidangDetails_namaKetuaBidangDesc);
+        namaPengurusBidangDesc = findViewById(R.id.BidangDetails_namaPengurusBidangDesc);
+        logoutImage = findViewById(R.id.BidangDetails_logoutImage);
+        listProkerImage = findViewById(R.id.BidangDetails_listProkerImage);
+        editBidangImage = findViewById(R.id.BidangDetails_editBidangImage);
 
         handleGetBidang();
 
@@ -67,7 +67,7 @@ public class InfoBidangActivity extends TemplateActivity {
 
                 BaseResponse<Bidang> res = response.body();
 
-                String[] arr = res.payload.nama_pengurus_bidang;
+                String[] arr = res.payload.namaPengurusBidang;
                 StringBuilder sb = new StringBuilder();
 
                 for (String s : arr) {
@@ -76,8 +76,8 @@ public class InfoBidangActivity extends TemplateActivity {
 
                 sb.delete(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1);
 
-                namaBidangDesc.setText(res.payload.nama_bidang);
-                namaKetuaBidangDesc.setText(res.payload.nama_ketua_bidang);
+                namaBidangDesc.setText(res.payload.namaBidang);
+                namaKetuaBidangDesc.setText(res.payload.namaKetuaBidang);
                 namaPengurusBidangDesc.setText(sb.toString());
             }
 

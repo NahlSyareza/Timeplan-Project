@@ -4,7 +4,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -112,7 +111,7 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         });
 
         logoBidangImage.setOnClickListener(view -> {
-            moveActivity(InfoBidangActivity.class);
+            moveActivity(BidangDetailsActivity.class);
         });
 
         handleGetProkerDisplay();
@@ -158,37 +157,37 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         List<ProkerDisplay> proker_list = new ArrayList<>();
 
         for (ProkerDisplay pd : prokderDisplayList) {
-            int st = getIndex(monthArray, pd.bulan_start);
-            int ed = getIndex(monthArray, pd.bulan_end);
+            int st = getIndex(monthArray, pd.bulanStart);
+            int ed = getIndex(monthArray, pd.bulanEnd);
 
             if (st == StaticUtils.CURRENT_BULAN_INDEX && ed == StaticUtils.CURRENT_BULAN_INDEX) {
                 if (StaticUtils.SHOW_OWNED) {
-                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
+                    if (pd.namaBidang.equals(StaticUtils.LOGGED_BIDANG))
                         relevant_proker_display.add(pd);
                 } else {
                     relevant_proker_display.add(pd);
                 }
             } else if (st == StaticUtils.CURRENT_BULAN_INDEX) {
-                pd.tanggal_end = 31;
+                pd.tanggalEnd = 31;
                 if (StaticUtils.SHOW_OWNED) {
-                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
+                    if (pd.namaBidang.equals(StaticUtils.LOGGED_BIDANG))
                         relevant_proker_display.add(pd);
                 } else {
                     relevant_proker_display.add(pd);
                 }
             } else if (ed == StaticUtils.CURRENT_BULAN_INDEX) {
-                pd.tanggal_start = 1;
+                pd.tanggalStart = 1;
                 if (StaticUtils.SHOW_OWNED) {
-                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
+                    if (pd.namaBidang.equals(StaticUtils.LOGGED_BIDANG))
                         relevant_proker_display.add(pd);
                 } else {
                     relevant_proker_display.add(pd);
                 }
             } else if (st < StaticUtils.CURRENT_BULAN_INDEX && StaticUtils.CURRENT_BULAN_INDEX < ed) {
-                pd.tanggal_start = 1;
-                pd.tanggal_end = 31;
+                pd.tanggalStart = 1;
+                pd.tanggalEnd = 31;
                 if (StaticUtils.SHOW_OWNED) {
-                    if (pd.nama_bidang.equals(StaticUtils.LOGGED_BIDANG))
+                    if (pd.namaBidang.equals(StaticUtils.LOGGED_BIDANG))
                         relevant_proker_display.add(pd);
                 } else {
                     relevant_proker_display.add(pd);
@@ -200,15 +199,14 @@ public class TimeplanCalendarActivity extends TemplateActivity {
             StringBuilder sb = new StringBuilder();
             sb.append(monthArray[StaticUtils.CURRENT_BULAN_INDEX]).append(": ");
             for (ProkerDisplay pd : relevant_proker_display) {
-                sb.append(pd.nama_proker).append(" (").append(pd.tanggal_start).append(" - ").append(pd.tanggal_end).append("), ");
+                sb.append(pd.namaProker).append(" (").append(pd.tanggalStart).append(" - ").append(pd.tanggalEnd).append("), ");
             }
             sb.delete(sb.length() - 2, sb.length());
-            Log.i("CECEP", sb.toString());
             CONTROL_VAR = false;
         }
 
         for (ProkerDisplay pd : relevant_proker_display) {
-            if (index >= pd.tanggal_start && index <= pd.tanggal_end) {
+            if (index >= pd.tanggalStart && index <= pd.tanggalEnd) {
                 proker_list.add(pd);
             }
         }
@@ -220,8 +218,8 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         IdentityImageView image = new IdentityImageView(index, this, proker_list);
         image.setOnClickListener(view -> {
             if (!StaticUtils.SELECT_EXECUTION_MODE) {
-                StaticUtils.ICBM_PROKER_DISPLAY_LIST = image.proker_list;
-                moveActivity(TimeplanDateDetailsActivity.class);
+                StaticUtils.ICBM_PROKER_DISPLAY_LIST = image.prokerDisplayList;
+                moveActivity(DateDetailsActivity.class);
             } else {
                 if (StaticUtils.SELECT_EXECUTION_STATE == 0) {
                     StaticUtils.SELECTED_BULAN_START = StaticUtils.CURRENT_MONTH;
@@ -262,13 +260,13 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         layout.addView(image);
         layout.addView(text);
 
-        if (image.proker_list.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+        if (image.prokerDisplayList.size() >= 3 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
             text.setTextColor(Color.rgb(27, 27, 27));
             image.setImageResource(R.drawable.level_3_critical);
-        } else if (image.proker_list.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
+        } else if (image.prokerDisplayList.size() == 2 && !StaticUtils.SHOW_ACTIVITIES_COLOR) {
             text.setTextColor(Color.rgb(27, 27, 27));
             image.setImageResource(R.drawable.level_2_warning);
-        } else if (image.proker_list.size() >= 1) {
+        } else if (image.prokerDisplayList.size() >= 1) {
             text.setTextColor(Color.rgb(27, 27, 27));
             image.setImageResource(R.drawable.level_1_alert);
         }

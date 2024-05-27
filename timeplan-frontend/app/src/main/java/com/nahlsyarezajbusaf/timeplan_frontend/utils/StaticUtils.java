@@ -11,6 +11,8 @@ import java.util.Map;
 // Everything STATIC goes here
 public class StaticUtils {
     public static String SELECTED_PROKER = "";
+    public static String SELECTED_MILESTONE_DESKRIPSI = "";
+    public static String SELECTED_MILESTONE_NAMA = "";
     public static String TEMP_NAMA_PROKER = "";
     public static int SELECT_EXECUTION_STATE = 0;
     public static Bulan SELECTED_BULAN_START = Bulan.JANUARI;
@@ -27,6 +29,9 @@ public class StaticUtils {
 
     public static int handleBidangProfile(String name) {
         switch (name) {
+            case "KETULEM":
+                return R.mipmap.logo_ketulem_round;
+
             case "PIPTEK":
                 return R.mipmap.logo_piptek_round;
 

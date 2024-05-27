@@ -53,9 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:ems="10"
             android:backgroundTint="#FFFFFF"
             android:drawableTint="#FFFFFF"
-            android:ems="10"
             android:fontFamily="@font/sfprodisplay"
             android:foregroundTint="#FFFFFF"
             android:hint="Nama Bidang"
@@ -63,8 +63,8 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#bfbfbf"
             android:textSize="22dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

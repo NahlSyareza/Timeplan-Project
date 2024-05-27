@@ -1,10 +1,8 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
 import android.content.Context;
-import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.widget.ImageView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
@@ -12,11 +10,9 @@ import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
-import java.io.IOException;
-
 public class MainActivity extends TemplateActivity {
 
-    public ImageView logoBidangImage, viewTimeplanImage, addTimeplanImage;
+    public ImageView logoBidangImage, viewTimeplanImage, addTimeplanImage, chatImage;
     private BaseApiService apiService;
     private static boolean INITIAL = true;
 
@@ -29,6 +25,7 @@ public class MainActivity extends TemplateActivity {
         logoBidangImage = findViewById(R.id.Main_logoBidangImage);
         viewTimeplanImage = findViewById(R.id.Main_viewTimeplanImage);
         addTimeplanImage = findViewById(R.id.Main_addTimeplanImage);
+        chatImage = findViewById(R.id.Main_chatImage);
 
         if(INITIAL) {
             INITIAL = false;
@@ -36,18 +33,42 @@ public class MainActivity extends TemplateActivity {
         }
 
         viewTimeplanImage.setOnClickListener(view -> {
-            if (StaticUtils.LOGGED_BIDANG.equals("NONE")) {
-                viewToast("Bidang harus login!");
-            } else {
-                moveActivity(TimeplanCalendarActivity.class);
+            switch (StaticUtils.LOGGED_BIDANG){
+                case "NONE":
+                    viewToast("Bidang harus login!");
+                    break;
+
+                default:
+                    moveActivity(TimeplanCalendarActivity.class);
+                    break;
+            }
+        });
+
+        chatImage.setOnClickListener(view -> {
+            switch (StaticUtils.LOGGED_BIDANG) {
+                case "NONE":
+                    viewToast("Bidang harus login!");
+                    break;
+
+                default:
+                    viewToast("You want to play? Let's play!");
+                    break;
             }
         });
 
         addTimeplanImage.setOnClickListener(view -> {
-            if (StaticUtils.LOGGED_BIDANG.equals("NONE")) {
-                viewToast("Bidang harus login!");
-            } else {
-                moveActivity(AddProkerActivity.class);
+            switch (StaticUtils.LOGGED_BIDANG) {
+                case "NONE":
+                    viewToast("Bidang harus login!");
+                    break;
+
+                case "KETULEM":
+                    viewToast("KETULEM tidak memiliki proker!");
+                    break;
+
+                default:
+                    moveActivity(AddProkerActivity.class);
+                    break;
             }
         });
 
@@ -56,10 +77,14 @@ public class MainActivity extends TemplateActivity {
         }
 
         logoBidangImage.setOnClickListener(view -> {
-            if (!StaticUtils.LOGGED_BIDANG.equals("NONE")) {
-                moveActivity(InfoBidangActivity.class);
-            } else {
-                moveActivity(LoginBidangActivity.class);
+            switch (StaticUtils.LOGGED_BIDANG) {
+                case "NONE":
+                    moveActivity(LoginBidangActivity.class);
+                    break;
+
+                default:
+                    moveActivity(BidangDetailsActivity.class);
+                    break;
             }
         });
     }

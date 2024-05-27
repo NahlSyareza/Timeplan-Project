@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/generic_background"
-    tools:context=".activity.TimeplanDateDetailsActivity">
+    tools:context=".activity.AddMilestoneActivity">
 
     <ImageView
-        android:id="@+id/logoImage5"
+        android:id="@+id/logoImage9"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:alpha="1"
@@ -20,26 +20,56 @@
         app:srcCompat="@mipmap/logo_ime_background" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
         android:layout_width="300dp"
-        android:layout_height="375dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_rectangle_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage5">
+        app:layout_constraintTop_toBottomOf="@+id/logoImage9">
 
-        <ListView
-            android:id="@+id/TimeplanDateDetails_prokerList"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
+        <EditText
+            android:id="@+id/AddMilestone_namaMilestoneField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="#FFFFFF"
+            android:drawableTint="#FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/sfprodisplay"
+            android:foregroundTint="#FFFFFF"
+            android:hint="Nama Milestone"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#bfbfbf"
+            android:textSize="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/AddMilestone_addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:strokeColor="#FFC107"
+        app:strokeWidth="2dp"
+        android:backgroundTint="#1B1B1B"
+        android:fontFamily="@font/sfprodisplay"
+        android:text="Add"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:cornerRadius="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

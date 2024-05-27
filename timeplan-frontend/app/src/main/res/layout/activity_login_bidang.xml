@@ -96,7 +96,7 @@
             android:fontFamily="@font/sfprodisplay"
             android:foregroundTint="#FFFFFF"
             android:hint="Password Bidang"
-            android:inputType="text"
+            android:inputType="text|textPassword"
             android:shadowColor="#FFFFFF"
             android:textColor="#FFFFFF"
             android:textColorHint="#bfbfbf"

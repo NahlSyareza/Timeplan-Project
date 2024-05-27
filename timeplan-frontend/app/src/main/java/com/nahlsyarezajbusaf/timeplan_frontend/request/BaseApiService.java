@@ -5,6 +5,7 @@ import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Bidang;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Bulan;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.JenisProker;
+import com.nahlsyarezajbusaf.timeplan_frontend.model.Milestone;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Proker;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 
@@ -59,11 +60,11 @@ public interface BaseApiService {
 
     @GET("proker/getNamaProker")
     Call<BaseResponse<Proker>> getNamaProker(
-        @Query("namaProker") String namaProker
+            @Query("namaProker") String namaProker
     );
 
     @GET("proker/getBidangProker")
-    Call<BaseResponse<List<Proker>>> getBidangProker(
+    Call<BaseResponse<List<ProkerDisplay>>> getBidangProker(
             @Query("namaBidang") String namaBidang
     );
 
@@ -73,7 +74,29 @@ public interface BaseApiService {
 
     @POST("proker/editProker")
     Call<BaseResponse<Proker>> editProker(
-        @Query("namaBidangOld") String namaBidangOld,
-        @Query("namaBidangNew") String namaBidangNew
+            @Query("namaBidangOld") String namaBidangOld,
+            @Query("namaBidangNew") String namaBidangNew
     );
+
+    /*
+        MILESTONE HANDLER
+     */
+    @POST("milestone/addProkerMilestone")
+    Call<BaseResponse<Milestone>> addProkerMilestone(
+            @Query("namaProker") String namaProker,
+            @Query("namaMilestone") String namaMilestone
+    );
+
+    @GET("milestone/getProkerMilestone")
+    Call<BaseResponse<List<Milestone>>> getProkerMilestone(
+            @Query("namaProker") String namaProker
+    );
+
+    @POST("milestone/editProkerMilestone")
+    Call<BaseResponse<Milestone>> editProkerMilestone(
+            @Query("namaProker") String namaProker,
+            @Query("namaMilestone") String namaMilestone,
+            @Query("deskripsiMilestone") String deskripsiMilestone
+    );
+
 }

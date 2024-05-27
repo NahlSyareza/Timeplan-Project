@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/generic_background"
-    tools:context=".activity.TimeplanProkerDetailsActivity">
+    tools:context=".activity.ProkerDetailsActivity">
 
     <ImageView
         android:id="@+id/logoImage4"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoImage4">
 
         <TextView
-            android:id="@+id/TimeplanProkerDetails_namaProkerText"
+            android:id="@+id/ProkerDetails_namaProkerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/TimeplanProkerDetails_steeringComitteeText"
+            android:id="@+id/ProkerDetails_steeringComitteeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -53,10 +53,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TimeplanProkerDetails_namaProkerDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_namaProkerDesc" />
 
         <TextView
-            android:id="@+id/TimeplanProkerDetails_milestoneProkerText"
+            android:id="@+id/ProkerDetails_milestoneProkerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -66,10 +66,10 @@
             android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TimeplanProkerDetails_steeringComitteeDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_steeringComitteeDesc" />
 
         <TextView
-            android:id="@+id/TimeplanProkerDetails_namaProkerDesc"
+            android:id="@+id/ProkerDetails_namaProkerDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -79,10 +79,10 @@
             android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TimeplanProkerDetails_namaProkerText" />
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_namaProkerText" />
 
         <TextView
-            android:id="@+id/TimeplanProkerDetails_steeringComitteeDesc"
+            android:id="@+id/ProkerDetails_steeringComitteeDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -93,10 +93,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TimeplanProkerDetails_steeringComitteeText" />
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_steeringComitteeText" />
 
         <ImageView
-            android:id="@+id/TimeplanProkerDetails_milestoneProkerImage"
+            android:id="@+id/ProkerDetails_milestoneProkerImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="4dp"
@@ -104,7 +104,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TimeplanProkerDetails_milestoneProkerText"
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_milestoneProkerText"
             app:srcCompat="@drawable/baseline_collections_bookmark_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

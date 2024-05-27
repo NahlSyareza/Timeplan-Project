@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TimeplanProkerDetailsActivity extends TemplateActivity {
+public class ProkerDetailsActivity extends TemplateActivity {
     private TextView namaProkerDesc, steeringComitteeDesc;
     private ImageView milestoneProkerImage;
     private BaseApiService apiService;
@@ -23,17 +23,17 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeplan_proker_details);
+        setContentView(R.layout.activity_proker_details);
 
         apiService = UtilsApi.getApiService();
-        namaProkerDesc = findViewById(R.id.TimeplanProkerDetails_namaProkerDesc);
-        steeringComitteeDesc = findViewById(R.id.TimeplanProkerDetails_steeringComitteeDesc);
-        milestoneProkerImage = findViewById(R.id.TimeplanProkerDetails_milestoneProkerImage);
+        namaProkerDesc = findViewById(R.id.ProkerDetails_namaProkerDesc);
+        steeringComitteeDesc = findViewById(R.id.ProkerDetails_steeringComitteeDesc);
+        milestoneProkerImage = findViewById(R.id.ProkerDetails_milestoneProkerImage);
 
         getNamaProker();
 
         milestoneProkerImage.setOnClickListener(view -> {
-            moveActivity(TimeplanProkerMilestoneActivity.class);
+            moveActivity(ProkerMilestoneActivity.class);
         });
     }
 
@@ -51,8 +51,8 @@ public class TimeplanProkerDetailsActivity extends TemplateActivity {
                 BaseResponse<Proker> res = response.body();
                 Proker proker = res.payload;
 
-                namaProkerDesc.setText(proker.nama_proker);
-                steeringComitteeDesc.setText(proker.steering_comittee);
+                namaProkerDesc.setText(proker.namaProker);
+                steeringComitteeDesc.setText(proker.steeringComittee);
             }
 
             @Override

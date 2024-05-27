@@ -3,25 +3,19 @@ package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.LambdaExpression;
-import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class TemplateActivity extends AppCompatActivity {
-    protected Context ctx = this;
+    public Context ctx = this;
     protected static Class<?> PREVIOUS_CLASS;
     protected static Class<?> CURRENT_CLASS;
-    protected static List<Class<?>> PASSED_CLASS_LIST = new ArrayList<>();
-    protected static int CLASS_INDEXER = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +27,6 @@ public class TemplateActivity extends AppCompatActivity {
         PREVIOUS_CLASS = this.getClass();
         Intent intent = new Intent(ctx, classis);
         CURRENT_CLASS = classis;
-        PASSED_CLASS_LIST.add(this.getClass());
-        CLASS_INDEXER = PASSED_CLASS_LIST.size();
-        Log.i("CECEP", "Current CLASS_INDEXER : " + CLASS_INDEXER);
-        startActivity(intent);
-    }
-
-    protected void backActivity(Class<?> classis) {
-        Intent intent = new Intent(ctx, classis);
         startActivity(intent);
     }
 
@@ -63,10 +49,10 @@ public class TemplateActivity extends AppCompatActivity {
         }
 
         if(this instanceof EditBidangActivity) {
-            moveActivity(InfoBidangActivity.class);
+            moveActivity(BidangDetailsActivity.class);
         }
 
-        if(this instanceof InfoBidangActivity) {
+        if(this instanceof BidangDetailsActivity) {
             moveActivity(MainActivity.class);
         }
 
@@ -91,20 +77,28 @@ public class TemplateActivity extends AppCompatActivity {
             moveActivity(MainActivity.class);
         }
 
-        if(this instanceof TimeplanDateDetailsActivity) {
+        if(this instanceof DateDetailsActivity) {
             moveActivity(TimeplanCalendarActivity.class);
         }
 
-        if(this instanceof TimeplanProkerDetailsActivity) {
+        if(this instanceof ProkerDetailsActivity) {
             moveActivity(TimeplanCalendarActivity.class);
         }
 
-        if(this instanceof TimeplanProkerMilestoneActivity) {
-            moveActivity(PREVIOUS_CLASS);
+        if(this instanceof ProkerMilestoneActivity) {
+            moveActivity(ProkerDetailsActivity.class);
         }
 
         if(this instanceof ListProkerBidangActivity) {
-            moveActivity(InfoBidangActivity.class);
+            moveActivity(BidangDetailsActivity.class);
+        }
+
+        if(this instanceof AddMilestoneActivity) {
+            moveActivity(TimeplanCalendarActivity.class);
+        }
+
+        if(this instanceof ProkerMilestoneDetailsActivity) {
+            moveActivity(ProkerMilestoneActivity.class);
         }
 
 //        if(CLASS_INDEXER > 0) {

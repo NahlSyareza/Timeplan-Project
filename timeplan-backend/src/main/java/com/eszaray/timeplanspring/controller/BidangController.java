@@ -123,11 +123,13 @@ public class BidangController {
 
             rs.next();
 
+            String[] starr = rs.getArray("nama_pengurus_bidang") == null ? new String[]{""} : (String[]) rs.getArray("nama_pengurus_bidang").getArray();
+
             Bidang bidang = new Bidang(
                     rs.getString("nama_bidang"),
                     rs.getString("password_bidang"),
                     rs.getString("nama_ketua_bidang"),
-                    (String[]) rs.getArray("nama_pengurus_bidang").getArray());
+                    starr);
             return new BaseResponse<>(true, "Informasi bidang berhasil didapatkan!", bidang);
         } catch (SQLException e) {
             e.printStackTrace();

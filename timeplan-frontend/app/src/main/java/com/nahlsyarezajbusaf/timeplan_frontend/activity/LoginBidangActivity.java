@@ -1,11 +1,10 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
@@ -64,9 +63,20 @@ public class LoginBidangActivity extends TemplateActivity {
 
                 if (res.state) {
                     StaticUtils.LOGGED_BIDANG = namaBidang;
-                    if (namaBidang.equals("PIPTEK")) {
-                        MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.you_have_good_taste);
-                        mediaPlayer.start();
+                    switch (namaBidang) {
+                        case "PIPTEK":
+                            MediaPlayer youHave = MediaPlayer.create(ctx, R.raw.you_have_good_taste);
+                            youHave.start();
+                            break;
+
+                        case "TOUR DE FORCE":
+                            MediaPlayer youWant = MediaPlayer.create(ctx, R.raw.you_want_to_play);
+                            youWant.start();
+                            break;
+
+                        default:
+                            break;
+
                     }
                     moveActivity(MainActivity.class);
                 }

@@ -82,10 +82,10 @@ public class ProkerController {
     }
 
     @GetMapping("/getBidangProker")
-    BaseResponse<List<Proker>> getBidangProker(
+    BaseResponse<List<ProkerDisplay>> getBidangProker(
             @RequestParam String namaBidang
     ) {
-        var query = "SELECT * FROM proker_ime WHERE nama_bidang=?";
+        var query = "SELECT * FROM proker_per_bulan WHERE nama_bidang=?";
 
         try (var connection = DatabaseConnect.connect()) {
             PreparedStatement request = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -94,14 +94,15 @@ public class ProkerController {
 
             var rs = request.executeQuery();
 
-            List<Proker> prokerList = new ArrayList<>();
+            List<ProkerDisplay> list = new ArrayList<>();
 
-            while(rs.next()) {
-                Proker proker = new Proker(rs.getString("nama_bidang"), rs.getString("nama_proker"), rs.getString("steering_comittee"), JenisProker.valueOf(rs.getString("jenis_proker")));
-                prokerList.add(proker);
+            while (rs.next()) {
+                ProkerDisplay prokerDisplay = new ProkerDisplay(rs.getString("nama_bidang"), rs.getString("nama_proker"), Bulan.valueOf(rs.getString("bulan_start")), Bulan.valueOf(rs.getString("bulan_end")), rs.getInt("tanggal_start"), rs.getInt("tanggal_end"));
+                list.add(prokerDisplay);
             }
 
-            return new BaseResponse<>(true, "Berhasil mendapatkan seluruh proker bidang  " + namaBidang, prokerList);
+
+            return new BaseResponse<>(true, "Berhasil mendapatkan seluruh proker bidang  " + namaBidang, list);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,8 +123,8 @@ public class ProkerController {
             List<ProkerDisplay> list = new ArrayList<>();
 
             while (rs.next()) {
-                ProkerDisplay proker_display = new ProkerDisplay(rs.getString("nama_bidang"), rs.getString("nama_proker"), Bulan.valueOf(rs.getString("bulan_start")), Bulan.valueOf(rs.getString("bulan_end")), rs.getInt("tanggal_start"), rs.getInt("tanggal_end"));
-                list.add(proker_display);
+                ProkerDisplay prokerDisplay = new ProkerDisplay(rs.getString("nama_bidang"), rs.getString("nama_proker"), Bulan.valueOf(rs.getString("bulan_start")), Bulan.valueOf(rs.getString("bulan_end")), rs.getInt("tanggal_start"), rs.getInt("tanggal_end"));
+                list.add(prokerDisplay);
             }
 
             return new BaseResponse<>(true, "Berhasil mendapatkan proker!", list);

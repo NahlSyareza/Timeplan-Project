@@ -1,4 +1,4 @@
-package com.eszaray.timeplanspring.model;
+package com.nahlsyarezajbusaf.timeplan_frontend.model;
 
 import java.util.Arrays;
 

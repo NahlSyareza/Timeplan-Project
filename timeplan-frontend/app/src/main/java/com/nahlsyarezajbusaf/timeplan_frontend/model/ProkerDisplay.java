@@ -1,30 +1,31 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.model;
 
 public class ProkerDisplay {
-    public String nama_bidang;
-    public String nama_proker;
-    public Bulan bulan_start;
-    public Bulan bulan_end;
-    public int tanggal_start;
-    public int tanggal_end;
+    public String namaBidang;
+    public String namaProker;
+    public Bulan bulanStart;
+    public Bulan bulanEnd;
+    public int tanggalStart;
+    public int tanggalEnd;
 
-    public ProkerDisplay(String nama_bidang, String nama_proker, Bulan bulan_start, Bulan bulan_end, int tanggal_start, int tanggal_end) {
-        this.nama_bidang = nama_bidang;
-        this.nama_proker = nama_proker;
-        this.bulan_start = bulan_start;
-        this.bulan_end = bulan_end;
-        this.tanggal_start = tanggal_start;
-        this.tanggal_end = tanggal_end;
+    public ProkerDisplay(String namaBidang, String namaProker, Bulan bulanStart, Bulan bulanEnd, int tanggalStart, int tanggalEnd) {
+        this.namaBidang = namaBidang;
+        this.namaProker = namaProker;
+        this.bulanStart = bulanStart;
+        this.bulanEnd = bulanEnd;
+        this.tanggalStart = tanggalStart;
+        this.tanggalEnd = tanggalEnd;
     }
 
     @Override
     public String toString() {
         return "ProkerDisplay{" +
-                "nama_proker='" + nama_proker + '\'' +
-                ", bulan_start=" + bulan_start +
-                ", bulan_end=" + bulan_end +
-                ", tanggal_start=" + tanggal_start +
-                ", tanggal_end=" + tanggal_end +
+                "namaBidang='" + namaBidang + '\'' +
+                ", namaProker='" + namaProker + '\'' +
+                ", bulanStart=" + bulanStart +
+                ", bulanEnd=" + bulanEnd +
+                ", tanggalStart=" + tanggalStart +
+                ", tanggalEnd=" + tanggalEnd +
                 '}';
     }
 }

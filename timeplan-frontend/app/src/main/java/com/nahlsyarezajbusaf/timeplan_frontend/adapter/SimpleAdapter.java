@@ -29,7 +29,7 @@ public class SimpleAdapter<T extends String> extends ArrayAdapter<T> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.simple_adapter, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_simple_layout, parent, false);
         }
 
         T item = getItem(position);

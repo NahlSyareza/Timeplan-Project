@@ -3,7 +3,6 @@ package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
@@ -40,13 +39,14 @@ public class EditBidangActivity extends TemplateActivity {
         editButton.setOnClickListener(view -> {
             handleEditBidang();
             handleEditProker();
-            StaticUtils.LOGGED_BIDANG = namaBidangField.getText().toString();
+            StaticUtils.LOGGED_BIDANG = namaBidangField.getText().toString().toUpperCase();
             moveActivity(MainActivity.class);
         });
     }
 
     public void handleEditProker() {
-        apiService.editProker(StaticUtils.LOGGED_BIDANG, namaBidangField.getText().toString()).enqueue(new Callback<BaseResponse<Proker>>() {
+        String namaBidang = namaBidangField.getText().toString().toUpperCase();
+        apiService.editProker(StaticUtils.LOGGED_BIDANG, namaBidang).enqueue(new Callback<BaseResponse<Proker>>() {
             @Override
             public void onResponse(Call<BaseResponse<Proker>> call, Response<BaseResponse<Proker>> response) {
                 if(!response.isSuccessful()) {
@@ -68,12 +68,12 @@ public class EditBidangActivity extends TemplateActivity {
     }
 
     public void handleEditBidang() {
-        String nama_bidang = namaBidangField.getText().toString();
-        String password_bidang = passwordBidangField.getText().toString();
-        String nama_ketua_bidang = namaKetuaBidangField.getText().toString();
-        String[] nama_pengurus_bidang = namaPengurusBidangField.getText().toString().split("\n");
+        String namaBidang = namaBidangField.getText().toString().toUpperCase();
+        String passwordBidang = passwordBidangField.getText().toString();
+        String namaKetuaBidang = namaKetuaBidangField.getText().toString();
+        String[] namaPengurusBidang = namaPengurusBidangField.getText().toString().split("\n");
 
-        apiService.editBidang(StaticUtils.LOGGED_BIDANG, nama_bidang, password_bidang, nama_ketua_bidang, nama_pengurus_bidang).enqueue(new Callback<BaseResponse<Bidang>>() {
+        apiService.editBidang(StaticUtils.LOGGED_BIDANG, namaBidang, passwordBidang, namaKetuaBidang, namaPengurusBidang).enqueue(new Callback<BaseResponse<Bidang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Bidang>> call, Response<BaseResponse<Bidang>> response) {
                 if(!response.isSuccessful()) {
@@ -106,14 +106,14 @@ public class EditBidangActivity extends TemplateActivity {
                 BaseResponse<Bidang> res = response.body();
                 Bidang bidang = res.payload;
 
-                namaBidangField.setText(bidang.nama_bidang);
-                passwordBidangField.setText(bidang.password_bidang);
-                namaKetuaBidangField.setText(bidang.nama_ketua_bidang);
+                namaBidangField.setText(bidang.namaBidang);
+                passwordBidangField.setText(bidang.passwordBidang);
+                namaKetuaBidangField.setText(bidang. namaKetuaBidang);
                 StringBuilder sb = new StringBuilder();
-                for(String s : bidang.nama_pengurus_bidang) {
+                for(String s : bidang.namaPengurusBidang) {
                     sb.append(s).append("\n");
                 }
-                sb.delete(sb.length() - 2, sb.length());
+                sb.delete(sb.length() - 1, sb.length());
                 namaPengurusBidangField.setText(sb.toString());
             }
 

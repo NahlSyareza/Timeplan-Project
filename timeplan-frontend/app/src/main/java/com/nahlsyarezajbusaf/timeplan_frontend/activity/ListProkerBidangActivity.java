@@ -1,12 +1,14 @@
 package com.nahlsyarezajbusaf.timeplan_frontend.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
+import com.nahlsyarezajbusaf.timeplan_frontend.adapter.ProkerDisplayAdapter;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.BaseResponse;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.Proker;
+import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
@@ -21,7 +23,9 @@ import retrofit2.Response;
 public class ListProkerBidangActivity extends TemplateActivity {
 
     private BaseApiService apiService;
-    private List<Proker> prokerList = new ArrayList<>();
+    private ListView listProkerList;
+    private Context ctx = this;
+    private List<ProkerDisplay> prokerDisplayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +33,28 @@ public class ListProkerBidangActivity extends TemplateActivity {
         setContentView(R.layout.activity_list_proker_bidang);
 
         apiService = UtilsApi.getApiService();
+        listProkerList = findViewById(R.id.ListProkerBidang_listProkerList);
 
         handleGetBidangProker();
-
-        viewToast("Outside size : " + prokerList.size());
     }
 
     public void handleGetBidangProker() {
-        apiService.getBidangProker(StaticUtils.LOGGED_BIDANG).enqueue(new Callback<BaseResponse<List<Proker>>>() {
+        apiService.getBidangProker(StaticUtils.LOGGED_BIDANG).enqueue(new Callback<BaseResponse<List<ProkerDisplay>>>() {
             @Override
-            public void onResponse(Call<BaseResponse<List<Proker>>> call, Response<BaseResponse<List<Proker>>> response) {
-                if(!response.isSuccessful()) {
+            public void onResponse(Call<BaseResponse<List<ProkerDisplay>>> call, Response<BaseResponse<List<ProkerDisplay>>> response) {
+                if (!response.isSuccessful()) {
                     viewErrorToast(response.code());
                     return;
                 }
 
-                BaseResponse<List<Proker>> res = response.body();
-                prokerList = res.payload;
-                viewToast("Inside size : " + prokerList.size());
+                BaseResponse<List<ProkerDisplay>> res = response.body();
+                prokerDisplayList = res.payload;
+
+                listProkerList.setAdapter(new ProkerDisplayAdapter(ctx, prokerDisplayList));
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<List<Proker>>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<List<ProkerDisplay>>> call, Throwable t) {
                 viewInternalErrorToast();
             }
         });

@@ -90,8 +90,8 @@ public class AddProkerActivity extends TemplateActivity {
                 BaseResponse<Bidang> res = response.body();
                 Bidang bidang = res.payload;
                 List<String> list = new ArrayList<>();
-                list.add(bidang.nama_ketua_bidang);
-                for(String s : bidang.nama_pengurus_bidang) {
+                list.add(bidang.namaKetuaBidang);
+                for(String s : bidang.namaPengurusBidang) {
                     list.add(s);
                 }
                 namaPengurusSpinner.setAdapter(new SimpleAdapter(ctx, list));

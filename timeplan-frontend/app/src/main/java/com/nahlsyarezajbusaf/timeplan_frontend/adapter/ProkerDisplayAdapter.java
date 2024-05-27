@@ -14,17 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.nahlsyarezajbusaf.timeplan_frontend.R;
-import com.nahlsyarezajbusaf.timeplan_frontend.activity.TimeplanProkerDetailsActivity;
+import com.nahlsyarezajbusaf.timeplan_frontend.activity.ProkerDetailsActivity;
 import com.nahlsyarezajbusaf.timeplan_frontend.model.ProkerDisplay;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ProkerDisplayAdapter extends ArrayAdapter<ProkerDisplay> {
-    private TextView nama_proker;
-    private ImageView logo_bidang;
+    private TextView namaProkerText;
+    private ImageView logoBidangImage;
 
     public ProkerDisplayAdapter(@NonNull Context context, List<ProkerDisplay> list) {
         super(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, list);
@@ -32,23 +30,26 @@ public class ProkerDisplayAdapter extends ArrayAdapter<ProkerDisplay> {
 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.proker_display_layout, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_proker_display_layout, parent, false);
         }
 
-        ProkerDisplay proker_display = getItem(position);
+        ProkerDisplay prokerDisplay = getItem(position);
 
-        nama_proker = convertView.findViewById(R.id.namaProkerTextProkerLayout);
-        logo_bidang = convertView.findViewById(R.id.logoBidangImageProkerLayout);
+        namaProkerText = convertView.findViewById(R.id.ProkerDisplayLayout_namaProkerText);
+        logoBidangImage = convertView.findViewById(R.id.ProkerDisplayLayout_logoBidangImage);
 
-        nama_proker.setText(proker_display.nama_proker);
-        logo_bidang.setImageResource(StaticUtils.handleBidangProfile(proker_display.nama_bidang));
+        String namaProker = prokerDisplay.namaProker;
+        String namaBidang = prokerDisplay.namaBidang;
+
+        namaProkerText.setText(prokerDisplay.namaProker);
+        logoBidangImage.setImageResource(StaticUtils.handleBidangProfile(prokerDisplay.namaBidang));
 
         convertView.setOnClickListener(view -> {
-            if(proker_display.nama_bidang.equals(StaticUtils.LOGGED_BIDANG)) {
-                viewToast("Melihat proker " + proker_display.nama_proker.toString());
-                StaticUtils.SELECTED_PROKER = proker_display.nama_proker;
-                moveActivity(TimeplanProkerDetailsActivity.class);
+            if (namaBidang.equals(StaticUtils.LOGGED_BIDANG) || StaticUtils.LOGGED_BIDANG.equals("KETULEM") || StaticUtils.LOGGED_BIDANG.equals("KESTARI")) {
+                viewToast("Melihat proker " + namaProker);
+                StaticUtils.SELECTED_PROKER = namaProker;
+                moveActivity(ProkerDetailsActivity.class);
             }
         });
 
