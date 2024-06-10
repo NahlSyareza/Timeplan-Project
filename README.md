@@ -4,6 +4,9 @@ Timeplan merupakan sebuah project yang berfungsi untuk manajemen dan visualisai 
 ## Fitur
 Terdapat beberapa fitur yang ditawarkan oleh Timeplan, yaitu<br/>
 - Custom proker timeline selector <br/>
+- Custom calendar visual
+- Fitur untuk menggunakan filter warna maksimal/minimal
+- Fitur untuk menampilkan hanya proker bidang
 - Pemilihan jenis dan steering comittee proker secara otomatis berdasarkan data yang sudah ada <br/>
 - Visualisasi semua proker yang telah ditambahkan oleh setiap bidang <br/>
 - Micro-manage proker dengan adanya fitur milestone <br/>
