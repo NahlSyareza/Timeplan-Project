@@ -20,6 +20,10 @@ import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
 import java.util.List;
 
+/**
+ * Displays proker and navigates to the details page if clicked
+ *
+ */
 public class ProkerDisplayAdapter extends ArrayAdapter<ProkerDisplay> {
     private TextView namaProkerText;
     private ImageView logoBidangImage;

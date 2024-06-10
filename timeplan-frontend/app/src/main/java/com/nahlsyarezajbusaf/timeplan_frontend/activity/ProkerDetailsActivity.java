@@ -15,11 +15,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Shows the details of a proker such as steering comitte, name, and it's milestones
+ *
+ */
 public class ProkerDetailsActivity extends TemplateActivity {
-    private TextView namaProkerDesc, steeringComitteeDesc;
+    private TextView namaProkerDesc, steeringComitteeDesc, jenisProkerDesc;
     private ImageView milestoneProkerImage, deleteProkerImage;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +39,7 @@ public class ProkerDetailsActivity extends TemplateActivity {
         steeringComitteeDesc = findViewById(R.id.ProkerDetails_steeringComitteeDesc);
         milestoneProkerImage = findViewById(R.id.ProkerDetails_milestoneProkerImage);
         deleteProkerImage = findViewById(R.id.ProkerDetails_deleteProkerImage);
+        jenisProkerDesc = findViewById(R.id.ProkerDetails_jenisProkerDesc);
 
         getNamaProker();
 
@@ -43,6 +53,10 @@ public class ProkerDetailsActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Can delete a proker from this page
+     *
+     */
     public void handleDeleteProker() {
         String namaBidang = StaticUtils.LOGGED_BIDANG;
         String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
@@ -65,7 +79,10 @@ public class ProkerDetailsActivity extends TemplateActivity {
         });
     }
 
-
+    /**
+     * Gets the clicked proker
+     *
+     */
     public void getNamaProker() {
         String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
 
@@ -82,6 +99,7 @@ public class ProkerDetailsActivity extends TemplateActivity {
 
                 namaProkerDesc.setText(proker.namaProker);
                 steeringComitteeDesc.setText(proker.steeringComittee);
+                jenisProkerDesc.setText(proker.jenisProker.name().replace("_", " "));
             }
 
             @Override

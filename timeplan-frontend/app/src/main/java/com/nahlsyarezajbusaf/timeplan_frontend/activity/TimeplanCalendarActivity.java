@@ -27,6 +27,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The core of this project. Included in this page is a custom tour-de-force calender
+ *
+ */
 public class TimeplanCalendarActivity extends TemplateActivity {
 
     private static final int DIM_COLOR = Color.rgb(153, 115, 2);
@@ -39,6 +43,12 @@ public class TimeplanCalendarActivity extends TemplateActivity {
     private final Bulan[] monthArray = Bulan.values();
     public static boolean CONTROL_VAR = true;
 
+    /**
+     * Acts as a main function for this activity
+     * I don't even know what I wrote...
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +127,10 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         handleGetProkerDisplay();
     }
 
+    /**
+     * I'm really cooking here with the backend handler
+     *
+     */
     public void handleGetProkerDisplay() {
         apiService.getProkerDisplay().enqueue(new Callback<BaseResponse<List<ProkerDisplay>>>() {
             @Override
@@ -152,6 +166,15 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * This is some serious s*** I cooked and damn it's tasty
+     * Basically this prints the custom calendar and adds the prokers associated
+     *
+     * @param layout
+     * @param index
+     * @param i
+     * @param j
+     */
     public void printCalendarBox(ConstraintLayout layout, int index, int i, int j) {
         List<ProkerDisplay> relevant_proker_display = new ArrayList<>();
         List<ProkerDisplay> proker_list = new ArrayList<>();
@@ -272,6 +295,14 @@ public class TimeplanCalendarActivity extends TemplateActivity {
         }
     }
 
+    /**
+     * Super serious s*** to make the dynamic proker display within a bulan works
+     *
+     * @param array
+     * @param find
+     * @return
+     * @param <T>
+     */
     public static <T> int getIndex(T[] array, T find) {
         int index = 0;
         for (T t : array) {

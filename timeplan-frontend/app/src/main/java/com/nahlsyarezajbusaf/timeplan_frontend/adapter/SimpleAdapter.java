@@ -14,6 +14,11 @@ import com.nahlsyarezajbusaf.timeplan_frontend.R;
 
 import java.util.List;
 
+/**
+ * Used for general purpose, such as dropdown
+ *
+ * @param <T>
+ */
 public class SimpleAdapter<T extends String> extends ArrayAdapter<T> {
     private TextView item_text;
 

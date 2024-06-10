@@ -8,6 +8,11 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Custom image view to render the calendar box
+ * Also holds the proker that is runnning in that tanggal
+ *
+ */
 public class IdentityImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     public List<ProkerDisplay> prokerDisplayList;

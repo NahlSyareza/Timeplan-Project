@@ -17,6 +17,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
+/**
+ * Defines the connection from frontend to backend so we can create requests
+ *
+ */
 public interface BaseApiService {
 
     @POST("bidang/registerBidang")

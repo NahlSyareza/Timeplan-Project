@@ -10,12 +10,21 @@ import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
+/**
+ * The main menu. Everything starts from here
+ *
+ */
 public class MainActivity extends TemplateActivity {
 
     public ImageView logoBidangImage, viewTimeplanImage, addTimeplanImage, chatImage;
     private BaseApiService apiService;
     private static boolean INITIAL = true;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +34,6 @@ public class MainActivity extends TemplateActivity {
         logoBidangImage = findViewById(R.id.Main_logoBidangImage);
         viewTimeplanImage = findViewById(R.id.Main_viewTimeplanImage);
         addTimeplanImage = findViewById(R.id.Main_addTimeplanImage);
-        chatImage = findViewById(R.id.Main_chatImage);
 
         if(INITIAL) {
             INITIAL = false;
@@ -40,18 +48,6 @@ public class MainActivity extends TemplateActivity {
 
                 default:
                     moveActivity(TimeplanCalendarActivity.class);
-                    break;
-            }
-        });
-
-        chatImage.setOnClickListener(view -> {
-            switch (StaticUtils.LOGGED_BIDANG) {
-                case "NONE":
-                    viewToast("Bidang harus login!");
-                    break;
-
-                default:
-                    viewToast("You want to play? Let's play!");
                     break;
             }
         });
@@ -89,6 +85,11 @@ public class MainActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Unused
+     *
+     * @param ctx
+     */
     public void handleBackgroundSong(Context ctx) {
         MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.orch_compression);
         mediaPlayer.setLooping(true);

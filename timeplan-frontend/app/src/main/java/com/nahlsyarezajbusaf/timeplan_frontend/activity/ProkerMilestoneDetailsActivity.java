@@ -18,6 +18,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Edits the description and status of a milestone
+ *
+ */
 public class ProkerMilestoneDetailsActivity extends TemplateActivity {
 
     private BaseApiService apiService;
@@ -26,6 +30,11 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
     private ImageView progresMilestoneImage, deleteMilestoneImage;
     private Status currentStatus;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +91,10 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
         super.onBackPressed();
     }
 
+    /**
+     * The backend to edit the milestone
+     *
+     */
     public void handleEditProkerMilestone() {
         String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
         String namaMilestone = StaticUtils.SELECTED_MILESTONE_NAMA;

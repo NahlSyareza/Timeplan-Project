@@ -12,6 +12,11 @@ import com.nahlsyarezajbusaf.timeplan_frontend.utils.LambdaExpression;
 
 import java.util.Random;
 
+/**
+ * A template activity for ALL OF PAGE ACTIVITY I use.
+ * Here I define the function for moving pages, toats, and also on back press handler
+ *
+ */
 public class TemplateActivity extends AppCompatActivity {
     public Context ctx = this;
     protected static Class<?> PREVIOUS_CLASS;

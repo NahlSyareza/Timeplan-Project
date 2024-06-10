@@ -18,12 +18,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Shows the milestone of a proker
+ *
+ */
 public class ProkerMilestoneActivity extends TemplateActivity {
 
     private ImageView addMilestone;
     private ListView milestoneList;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,10 @@ public class ProkerMilestoneActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Gets the already available milestones of a proker
+     *
+     */
     public void handleGetProkerMilestone() {
         String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
 

@@ -18,6 +18,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Logs in a bidang and saves who logs in to StaticUtils
+ *
+ */
 public class LoginBidangActivity extends TemplateActivity {
 
     private TextView registerBidangText;
@@ -25,6 +29,11 @@ public class LoginBidangActivity extends TemplateActivity {
     private Button loginButton;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,10 @@ public class LoginBidangActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Shoots to backend. Only if the backend response is successful that it will log the bidang in
+     *
+     */
     public void handleLoginBidang() {
         String namaBidang = namaBidangField.getText().toString().toUpperCase();
         String passwordBidang = passwordBidangField.getText().toString();

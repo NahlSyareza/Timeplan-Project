@@ -8,6 +8,14 @@ public class Bidang {
     public String namaKetuaBidang;
     public String[] namaPengurusBidang;
 
+    /**
+     * Model for bidang so we can login/register and transfer data from backend to frontend and also vice versa
+     *
+     * @param namaBidang
+     * @param passwordBidang
+     * @param namaKetuaBidang
+     * @param namaPengurusBidang
+     */
     public Bidang(String namaBidang, String passwordBidang, String namaKetuaBidang, String[] namaPengurusBidang) {
         this.namaBidang = namaBidang;
         this.passwordBidang = passwordBidang;

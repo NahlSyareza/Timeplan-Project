@@ -14,12 +14,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Adds a new bidang to the database
+ *
+ */
 public class RegisterBidangActivity extends TemplateActivity {
 
     private EditText namaBidangField, passwordBidangField, namaKetuaBidangField, namaPengurusBidangField;
     private Button registerButton;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +46,10 @@ public class RegisterBidangActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Backend handler for adding the data
+     *
+     */
     public void handleAddBidang() {
         String nama_bidang = namaBidangField.getText().toString();
         String password_bidang = passwordBidangField.getText().toString();

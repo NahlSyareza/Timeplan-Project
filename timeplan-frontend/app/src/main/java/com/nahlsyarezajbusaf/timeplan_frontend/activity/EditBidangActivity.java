@@ -16,12 +16,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Edits the name, password, leader, and pengurus of a bidang
+ *
+ */
 public class EditBidangActivity extends TemplateActivity {
 
     private EditText namaBidangField, passwordBidangField, namaKetuaBidangField, namaPengurusBidangField;
     private Button editButton;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +53,10 @@ public class EditBidangActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Shoots to the backend to edit
+     *
+     */
     public void handleEditProker() {
         String namaBidang = namaBidangField.getText().toString().toUpperCase();
         apiService.editProker(StaticUtils.LOGGED_BIDANG, namaBidang).enqueue(new Callback<BaseResponse<Proker>>() {

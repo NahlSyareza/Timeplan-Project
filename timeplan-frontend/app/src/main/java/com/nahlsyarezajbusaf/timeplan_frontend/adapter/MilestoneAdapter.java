@@ -28,6 +28,12 @@ import java.util.List;
 
 import retrofit2.http.POST;
 
+/**
+ * Custom adapter for milestone
+ * Navigates to a page when clicked
+ *
+ * @param <T>
+ */
 public class MilestoneAdapter<T extends Milestone> extends ArrayAdapter<T> {
 
     private TextView namaMilestoneText;

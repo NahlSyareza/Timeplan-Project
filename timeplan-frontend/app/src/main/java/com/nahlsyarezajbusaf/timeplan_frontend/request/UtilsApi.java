@@ -4,6 +4,10 @@ import android.util.Log;
 
 import java.net.InetAddress;
 
+/**
+ * Connects the backend to frontend over an internet or by localhost
+ *
+ */
 public class UtilsApi {
 
     public static final String BASE_URL_API = "http://10.0.2.2:5000/";

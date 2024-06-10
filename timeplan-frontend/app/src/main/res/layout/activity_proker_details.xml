@@ -56,6 +56,19 @@
             app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_namaProkerDesc" />
 
         <TextView
+            android:id="@+id/prokerDetails_jenisProkerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/sfprodisplaybold"
+            android:text="JENIS PROKER"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_steeringComitteeDesc" />
+
+        <TextView
             android:id="@+id/ProkerDetails_milestoneProkerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +79,7 @@
             android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_steeringComitteeDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_jenisProkerDesc" />
 
         <TextView
             android:id="@+id/ProkerDetails_namaProkerDesc"
@@ -94,6 +107,20 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_steeringComitteeText" />
+
+        <TextView
+            android:id="@+id/ProkerDetails_jenisProkerDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/sfprodisplay"
+            android:text="JENIS"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prokerDetails_jenisProkerText" />
 
         <ImageView
             android:id="@+id/ProkerDetails_milestoneProkerImage"

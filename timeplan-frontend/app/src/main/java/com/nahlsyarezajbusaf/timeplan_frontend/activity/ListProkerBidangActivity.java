@@ -20,6 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Shows list of proker that is associated with a bidang.
+ * Navigate to this page from the bidang edit page
+ *
+ */
 public class ListProkerBidangActivity extends TemplateActivity {
 
     private BaseApiService apiService;
@@ -27,6 +32,11 @@ public class ListProkerBidangActivity extends TemplateActivity {
     private Context ctx = this;
     private List<ProkerDisplay> prokerDisplayList = new ArrayList<>();
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +48,10 @@ public class ListProkerBidangActivity extends TemplateActivity {
         handleGetBidangProker();
     }
 
+    /**
+     * Backend shooting stuff
+     *
+     */
     public void handleGetBidangProker() {
         apiService.getBidangProker(StaticUtils.LOGGED_BIDANG).enqueue(new Callback<BaseResponse<List<ProkerDisplay>>>() {
             @Override

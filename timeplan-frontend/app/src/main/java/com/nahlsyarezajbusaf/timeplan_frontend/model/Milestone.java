@@ -8,6 +8,14 @@ public class Milestone {
     public Status progresMilestone;
     public String deskripsiMilestone;
 
+    /**
+     * Model for milestone so we can transfer data from backend to frontend. Or vice versa
+     *
+     * @param namaProker
+     * @param namaMilestone
+     * @param progresMilestone
+     * @param deskripsiMilestone
+     */
     public Milestone(String namaProker, String namaMilestone, Status progresMilestone, String deskripsiMilestone) {
         this.namaProker = namaProker;
         this.namaMilestone = namaMilestone;

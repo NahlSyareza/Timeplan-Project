@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Every data that is required across activities is in here
+ *
+ */
 // Everything STATIC goes here
 public class StaticUtils {
     public static String SELECTED_PROKER_NAMA = "";
