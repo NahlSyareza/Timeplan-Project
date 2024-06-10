@@ -2,6 +2,10 @@ package com.eszaray.timeplanspring;
 
 import com.eszaray.timeplanspring.model.Bulan;
 
+/**
+ * Just a test program for easy dynamic display on the custom tour-de-force calendar
+ *
+ */
 public class MonthAdjuster {
     public static Bulan[] BULAN_ARRAY = Bulan.values();
 

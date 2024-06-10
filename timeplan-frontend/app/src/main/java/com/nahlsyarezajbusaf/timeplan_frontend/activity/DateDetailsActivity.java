@@ -9,10 +9,19 @@ import com.nahlsyarezajbusaf.timeplan_frontend.request.BaseApiService;
 import com.nahlsyarezajbusaf.timeplan_frontend.request.UtilsApi;
 import com.nahlsyarezajbusaf.timeplan_frontend.utils.StaticUtils;
 
+/**
+ * See what proker is running on a specified date!
+ *
+ */
 public class DateDetailsActivity extends TemplateActivity {
     private ListView prokerList;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

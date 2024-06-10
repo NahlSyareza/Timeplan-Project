@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Configuration for connecting this project to NeonTech database
+ * using several magic words that I don't even understand
+ */
+
 public class DatabaseConfig {
     private static final Properties PROPERTIES = new Properties();
 

@@ -15,12 +15,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Creates a new milestone with a name
+ *
+ */
 public class AddMilestoneActivity extends TemplateActivity {
 
     private EditText namaMilestoneField;
     private Button addButton;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,12 @@ public class AddMilestoneActivity extends TemplateActivity {
 
     }
 
+    /**
+     * Shoots to the backend to add a new milestone to a specified proker
+     *
+     * @param namaProker
+     * @param namaMilestone
+     */
     public void handleAddProkerMilestone(String namaProker, String namaMilestone) {
         apiService.addProkerMilestone(namaProker, namaMilestone).enqueue(new Callback<BaseResponse<Milestone>>() {
             @Override

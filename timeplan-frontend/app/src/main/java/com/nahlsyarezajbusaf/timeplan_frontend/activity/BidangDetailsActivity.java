@@ -15,12 +15,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Shows the details from a bidang, and also some other actions such as delete, logout, edit, and delete
+ *
+ */
 public class BidangDetailsActivity extends TemplateActivity {
 
     private TextView namaBidangDesc, namaKetuaBidangDesc, namaPengurusBidangDesc;
     private ImageView logoBidangImage, logoutImage, listProkerImage, editBidangImage, deleteBidangImage;
     private BaseApiService apiService;
 
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +69,10 @@ public class BidangDetailsActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Deletes a bidang if you want to. And also deletes any proker and milestone associated with the bidang
+     *
+     */
     public void handleDeleteBidang() {
         String namaBidang = StaticUtils.LOGGED_BIDANG;
 
@@ -83,6 +96,10 @@ public class BidangDetailsActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Get the bidang information from the database
+     *
+     */
     public void handleGetBidang() {
         String nama_bidang = StaticUtils.LOGGED_BIDANG;
 

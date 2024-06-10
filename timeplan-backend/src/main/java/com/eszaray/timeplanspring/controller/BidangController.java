@@ -13,11 +13,24 @@ import java.sql.Statement;
 // executeQuery() for SELECT statements
 // executeUpdate() for INSERT statements
 
+/**
+ * Controller for queries related to bidang
+ */
+
 @RestController
 @RequestMapping("/bidang")
 public class BidangController {
     public final String CONNECTION_ERROR_MSG = "Connection error!";
 
+    /**
+     * Registers new bidang to the database
+     *
+     * @param nama_bidang
+     * @param password_bidang
+     * @param nama_ketua_bidang
+     * @param nama_pengurus_bidang
+     * @return
+     */
     @PostMapping("/registerBidang")
     BaseResponse<Bidang> registerBidang(
             @RequestParam String nama_bidang,
@@ -45,6 +58,16 @@ public class BidangController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Edits currently existing bidang
+     *
+     * @param nama_bidang_old
+     * @param nama_bidang_new
+     * @param password_bidang
+     * @param nama_ketua_bidang
+     * @param nama_pengurus_bidang
+     * @return
+     */
     @PostMapping("/editBidang")
     BaseResponse<Bidang> editBidang(
             @RequestParam String nama_bidang_old,
@@ -74,6 +97,13 @@ public class BidangController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Manages if an account with a password exists and returns an error if no such account and password combination is found
+     *
+     * @param nama_bidang
+     * @param password_bidang
+     * @return
+     */
     @GetMapping("/loginBidang")
     BaseResponse<Bidang> loginBidang(
             @RequestParam String nama_bidang,
@@ -109,6 +139,12 @@ public class BidangController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Gets a bidang using it's name
+     *
+     * @param nama_bidang
+     * @return
+     */
     @GetMapping("/getBidang")
     BaseResponse<Bidang> getBidang(
             @RequestParam String nama_bidang
@@ -139,6 +175,12 @@ public class BidangController {
         return new BaseResponse(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Deletes a bidang by specifying a name
+     *
+     * @param namaBidang
+     * @return
+     */
     @PostMapping("/deleteBidang")
     BaseResponse<Bidang> deleteBidang(
             @RequestParam String namaBidang

@@ -1,5 +1,8 @@
 package com.eszaray.timeplanspring.model;
 
+/**
+ * Enum for bulan. What else is there?
+ */
 public enum Bulan {
     JANUARI,
     FEBRUARI,

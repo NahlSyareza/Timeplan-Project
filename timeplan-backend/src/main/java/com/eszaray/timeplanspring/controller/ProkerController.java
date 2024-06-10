@@ -11,11 +11,27 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for queries related to proker
+ */
 @RestController
 @RequestMapping("/proker")
 public class ProkerController {
     public final String CONNECTION_ERROR_MSG = "Connection error!";
 
+    /**
+     * Creates new proker and adds it into the proker_ime and proker_per_bulan table with their respective column data simultaneously
+     *
+     * @param namaBidang
+     * @param namaProker
+     * @param steeringComittee
+     * @param jenisProker
+     * @param tanggalStart
+     * @param bulanStart
+     * @param tanggalEnd
+     * @param bulanEnd
+     * @return
+     */
     @PostMapping("/addProker")
     BaseResponse<Proker> addProker(
             @RequestParam String namaBidang,
@@ -57,6 +73,12 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Gets a proker details, but not it's timeline details
+     *
+     * @param namaProker
+     * @return
+     */
     @GetMapping("/getNamaProker")
     BaseResponse<Proker> getNamaProker(
             @RequestParam String namaProker
@@ -82,6 +104,12 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Gets a proker that is owned by a specified bidang
+     *
+     * @param namaBidang
+     * @return
+     */
     @GetMapping("/getBidangProker")
     BaseResponse<List<ProkerDisplay>> getBidangProker(
             @RequestParam String namaBidang
@@ -111,6 +139,11 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Gets every proker and it's timeline details only
+     *
+     * @return
+     */
     @GetMapping("/getProkerDisplay")
     BaseResponse<List<ProkerDisplay>> getProkerDisplay(
     ) {
@@ -136,6 +169,13 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Edits a proker bidang if the bidang that owns it changes it's name
+     *
+     * @param namaBidangOld
+     * @param namaBidangNew
+     * @return
+     */
     @PostMapping("/editProker")
     BaseResponse<Proker> editProker(
             @RequestParam String namaBidangOld,
@@ -164,6 +204,13 @@ public class ProkerController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Delete a proker that is owned by a bidang
+     *
+     * @param namaBidang
+     * @param namaProker
+     * @return
+     */
     @PostMapping("/deleteProker")
     BaseResponse<Proker> deleteProker(
             @RequestParam String namaBidang,

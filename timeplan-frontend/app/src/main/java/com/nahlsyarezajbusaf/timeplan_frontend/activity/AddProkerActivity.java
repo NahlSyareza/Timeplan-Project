@@ -24,6 +24,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Creates a new proker with the required instances
+ *
+ */
 public class AddProkerActivity extends TemplateActivity {
     private EditText namaProkerField;
     private Spinner namaPengurusSpinner, jenisProkerSpinner;
@@ -31,6 +35,12 @@ public class AddProkerActivity extends TemplateActivity {
     private ImageView pilihJadwalImage;
     private BaseApiService apiService;
     private Context ctx = this;
+
+    /**
+     * Acts as a main function for this activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +86,10 @@ public class AddProkerActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Gets a bidang, and then get it's pengurus and ketua so we can display it in the spinner
+     *
+     */
     public void handleGetBidang() {
         String nama_bidang = StaticUtils.LOGGED_BIDANG;
 
@@ -104,6 +118,10 @@ public class AddProkerActivity extends TemplateActivity {
         });
     }
 
+    /**
+     * Shoots to the backend to add a new proker after we require all the needed instances
+     *
+     */
     public void handleAddProker() {
         String nama_bidang = StaticUtils.LOGGED_BIDANG;
         String nama_proker = namaProkerField.getText().toString();

@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Instance that will be used for queries into the database
+ */
+
 public class DatabaseConnect {
 
     public static Connection connect() throws SQLException{

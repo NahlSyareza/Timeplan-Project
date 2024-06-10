@@ -14,11 +14,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for queries related to milestone
+ */
 @RestController
 @RequestMapping("/milestone")
 public class MilestoneController {
     public final String CONNECTION_ERROR_MSG = "Connection error!";
 
+    /**
+     * Creates a new blank milestone with it's associated proker
+     *
+     * @param namaProker
+     * @param namaMilestone
+     * @return
+     */
     @PostMapping("/addProkerMilestone")
     BaseResponse<Milestone> addProkerMilestone(
             @RequestParam String namaProker,
@@ -43,6 +53,12 @@ public class MilestoneController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Gets milestone that's related to the specified proker name
+     *
+     * @param namaProker
+     * @return
+     */
     @GetMapping("/getProkerMilestone")
     BaseResponse<List<Milestone>> getProkerMilestone(
             @RequestParam String namaProker
@@ -71,6 +87,15 @@ public class MilestoneController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Edits the contents of a milestone
+     *
+     * @param namaProker
+     * @param namaMilestone
+     * @param progresMilestone
+     * @param deskripsiMilestone
+     * @return
+     */
     @PostMapping("/editProkerMilestone")
     BaseResponse<Milestone> editProkerMilestone(
             @RequestParam String namaProker,
@@ -98,6 +123,13 @@ public class MilestoneController {
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 
+    /**
+     * Deletes a proker from a specified proker
+     *
+     * @param namaProker
+     * @param namaMilestone
+     * @return
+     */
     @PostMapping("/deleteProkerMilestone")
     BaseResponse<Milestone> deleteProkerMilestone(
             @RequestParam String namaProker,

@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
 
+/**
+ * Everything starts here, the commented part is just some early testing to test if it successfully connects to the NeonTech database
+ *
+ */
 @SpringBootApplication
 public class TimeplanSpringApplication {
 
