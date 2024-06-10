@@ -1,3 +1,3 @@
 ## Overview
-Sebuah project calendar yang berfungsi untuk memvisualisasikan dan mengatur proker-proker dari tiap-tiap bidang yang ada di IME
+Timeplan merupakan sebuah project yang berfungsi untuk manajemen dan visualisai dari sebuah kegiatan. Di sini Timeplan mengambil IME untuk menerapkan teknologinya<br/>
 
