@@ -1,3 +1,9 @@
 ## Overview
-Timeplan merupakan sebuah project yang berfungsi untuk manajemen dan visualisai dari sebuah kegiatan. Di sini Timeplan mengambil IME untuk menerapkan teknologinya<br/>
+Timeplan merupakan sebuah project yang berfungsi untuk manajemen dan visualisai dari sebuah kegiatan. Di sini Timeplan mengambil IME untuk manajemen dan controlling proker-proker yang ada<br/>
 
+## Fitur
+Terdapat beberapa fitur yang ditawarkan oleh Timeplan, yaitu<br/>
+- Custom proker timeline selector <br/>
+- Pemilihan jenis dan steering comittee proker secara otomatis berdasarkan data yang sudah ada <br/>
+- Visualisasi semua proker yang telah ditambahkan oleh setiap bidang <br/>
+- Micro-manage proker dengan adanya fitur milestone <br/>
