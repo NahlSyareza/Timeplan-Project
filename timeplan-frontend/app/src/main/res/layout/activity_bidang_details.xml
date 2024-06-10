@@ -147,4 +147,15 @@
         app:srcCompat="@drawable/baseline_edit_24"
         app:tint="#FFC107" />
 
+    <ImageView
+        android:id="@+id/BidangDetails_deleteBidangImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="44dp"
+        app:tint="#FFC107"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_delete_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@ import retrofit2.Response;
 public class BidangDetailsActivity extends TemplateActivity {
 
     private TextView namaBidangDesc, namaKetuaBidangDesc, namaPengurusBidangDesc;
-    private ImageView logoBidangImage, logoutImage, listProkerImage, editBidangImage;
+    private ImageView logoBidangImage, logoutImage, listProkerImage, editBidangImage, deleteBidangImage;
     private BaseApiService apiService;
 
     @Override
@@ -34,6 +34,7 @@ public class BidangDetailsActivity extends TemplateActivity {
         logoutImage = findViewById(R.id.BidangDetails_logoutImage);
         listProkerImage = findViewById(R.id.BidangDetails_listProkerImage);
         editBidangImage = findViewById(R.id.BidangDetails_editBidangImage);
+        deleteBidangImage = findViewById(R.id.BidangDetails_deleteBidangImage);
 
         handleGetBidang();
 
@@ -47,10 +48,38 @@ public class BidangDetailsActivity extends TemplateActivity {
             moveActivity(ListProkerBidangActivity.class);
         });
 
+        deleteBidangImage.setOnClickListener(view -> {
+            handleDeleteBidang();
+            moveActivity(LoginBidangActivity.class);
+        });
+
         logoutImage.setOnClickListener(view -> {
             moveActivity(MainActivity.class);
             StaticUtils.LOGGED_BIDANG = "NONE";
             viewToast("Bidang berhasil logout!");
+        });
+    }
+
+    public void handleDeleteBidang() {
+        String namaBidang = StaticUtils.LOGGED_BIDANG;
+
+        apiService.deleteBidang(namaBidang).enqueue(new Callback<BaseResponse<Bidang>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Bidang>> call, Response<BaseResponse<Bidang>> response) {
+                if (!response.isSuccessful()) {
+                    viewErrorToast(response.code());
+                    return;
+                }
+
+                BaseResponse<Bidang> res = response.body();
+                StaticUtils.LOGGED_BIDANG = "NONE";
+                viewToast(res.message);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Bidang>> call, Throwable t) {
+                viewInternalErrorToast();
+            }
         });
     }
 

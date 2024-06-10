@@ -171,18 +171,22 @@ public class ProkerController {
     ) {
         var query1 = "DELETE FROM proker_ime WHERE nama_bidang=? AND nama_proker=?;";
         var query2 = "DELETE FROM proker_per_bulan WHERE nama_bidang=? AND nama_proker=?;";
+        var query3 = "DELETE FROM milestone_proker_ime WHERE nama_proker=?";
 
         try(var connection = DatabaseConnect.connect()) {
             PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
             PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request3 = connection.prepareStatement(query3, Statement.RETURN_GENERATED_KEYS);
 
             request1.setString(1, namaBidang);
             request1.setString(2, namaProker);
             request2.setString(1, namaBidang);
             request2.setString(2, namaProker);
+            request3.setString(1, namaProker);
 
             request1.executeUpdate();
             request2.executeUpdate();
+            request3.executeUpdate();
 
             return new BaseResponse<>(true, "Berhasil menghapus proker", null);
         } catch(SQLException e) {

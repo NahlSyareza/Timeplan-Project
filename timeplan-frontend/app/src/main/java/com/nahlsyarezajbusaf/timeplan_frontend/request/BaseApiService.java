@@ -38,6 +38,11 @@ public interface BaseApiService {
             @Query("nama_bidang") String nama_bidang
     );
 
+    @POST("bidang/deleteBidang")
+    Call<BaseResponse<Bidang>> deleteBidang(
+            @Query("namaBidang") String namaBidang
+    );
+
     @POST("bidang/editBidang")
     Call<BaseResponse<Bidang>> editBidang(
             @Query("nama_bidang_old") String nama_bidang_old,

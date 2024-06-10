@@ -5,6 +5,7 @@ import com.eszaray.timeplanspring.model.BaseResponse;
 import com.eszaray.timeplanspring.model.Bidang;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,7 +67,7 @@ public class BidangController {
             request.executeUpdate();
 
             return new BaseResponse<>(true, "Bidang " + nama_bidang_old + " telah diedit!", new Bidang(nama_bidang_new, password_bidang, nama_ketua_bidang, nama_pengurus_bidang));
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -136,5 +137,40 @@ public class BidangController {
         }
 
         return new BaseResponse(false, CONNECTION_ERROR_MSG, null);
+    }
+
+    @PostMapping("/deleteBidang")
+    BaseResponse<Bidang> deleteBidang(
+            @RequestParam String namaBidang
+    ) {
+        var query1 = "DELETE FROM bidang_ime WHERE nama_bidang=?";
+        var query2 = "DELETE FROM proker_ime WHERE nama_bidang=?";
+        var query3 = "DELETE FROM proker_per_bulan WHERE nama_bidang=?";
+        var query4 = "DELETE FROM milestone_proker_ime WHERE nama_proker IN (SELECT nama_proker FROM proker_ime WHERE nama_bidang=?)";
+
+        try (var connection = DatabaseConnect.connect()) {
+            PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request3 = connection.prepareStatement(query3, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request4 = connection.prepareStatement(query4, Statement.RETURN_GENERATED_KEYS);
+
+            System.out.println(namaBidang);
+
+            request1.setString(1, namaBidang);
+            request2.setString(1, namaBidang);
+            request3.setString(1, namaBidang);
+            request4.setString(1, namaBidang);
+
+            request4.executeUpdate();
+            request1.executeUpdate();
+            request2.executeUpdate();
+            request3.executeUpdate();
+
+            return new BaseResponse<>(true, "Bidang " + namaBidang + " berhasil dihapus!", null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
 }
