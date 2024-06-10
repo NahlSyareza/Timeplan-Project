@@ -10,3 +10,6 @@ Terdapat beberapa fitur yang ditawarkan oleh Timeplan, yaitu<br/>
 
 ## Developer Environmnet
 Timeplan dibuat dengan bahasa Java, baik dalam frontend ataupun backend. Backend dibuat menggunakan database dari NeonTech yang dihubungkan dengan Java, sedangkan frontend dibuat menggunakan Android Studio, dimana tampilan akan dibuat dengan menggunakan kombinasi file-file .xml dan .java untuk tampilan dan fungsionalitas. Kemudian, di sini backend juga menggunakan PostgreSQL sebagai database SQL-nya
+
+##ERD
+![alt_text](https://github.com/NahlSyareza/Timeplan-Project/blob/main/timeplan_erd.png?raw=true)
