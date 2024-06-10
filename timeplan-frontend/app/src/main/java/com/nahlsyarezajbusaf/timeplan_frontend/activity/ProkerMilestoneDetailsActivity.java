@@ -37,6 +37,7 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
         progresMilestoneImage = findViewById(R.id.ProkerMilestoneDetails_progresMilestoneImage);
         deleteMilestoneImage = findViewById(R.id.ProkerMilestoneDetails_deleteMilestoneImage);
 
+        namaMilestoneText.setText(StaticUtils.SELECTED_MILESTONE_NAMA);
         deskripsiMilestoneField.setText(StaticUtils.SELECTED_MILESTONE_DESKRIPSI);
 
         currentStatus = StaticUtils.SELECTED_MILESTONE_PROGRES;
@@ -54,7 +55,8 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
         }
 
         deleteMilestoneImage.setOnClickListener(view -> {
-            viewToast("Tour de Force");
+            handleDeleteProkerMilestone();
+            moveActivity(ProkerMilestoneActivity.class);
         });
 
         progresMilestoneImage.setOnClickListener(view -> {
@@ -76,12 +78,12 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         handleEditProkerMilestone();
+        super.onBackPressed();
     }
 
     public void handleEditProkerMilestone() {
-        String namaProker = StaticUtils.SELECTED_PROKER;
+        String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
         String namaMilestone = StaticUtils.SELECTED_MILESTONE_NAMA;
         Status progresMilestone = currentStatus;
         String deskripsiMilestone = deskripsiMilestoneField.getText().toString();
@@ -95,6 +97,29 @@ public class ProkerMilestoneDetailsActivity extends TemplateActivity {
 
                 BaseResponse<Milestone> res = response.body();
                 Milestone milestone = res.payload;
+                deskripsiMilestoneField.setText(milestone.deskripsiMilestone);
+                viewToast(res.message);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Milestone>> call, Throwable t) {
+                viewInternalErrorToast();
+            }
+        });
+    }
+
+    public void handleDeleteProkerMilestone() {
+        String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
+        String namaMilestone = StaticUtils.SELECTED_MILESTONE_NAMA;
+        apiService.deleteProkerMilestone(namaProker, namaMilestone).enqueue(new Callback<BaseResponse<Milestone>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Milestone>> call, Response<BaseResponse<Milestone>> response) {
+                if(!response.isSuccessful()) {
+                    viewErrorToast(response.code());
+                    return;
+                }
+
+                BaseResponse<Milestone> res = response.body();
                 viewToast(res.message);
             }
 

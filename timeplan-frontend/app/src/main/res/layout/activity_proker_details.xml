@@ -100,11 +100,23 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_milestoneProkerText"
             app:srcCompat="@drawable/baseline_collections_bookmark_24" />
+
+        <ImageView
+            android:id="@+id/ProkerDetails_deleteProkerImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProkerDetails_milestoneProkerImage"
+            app:srcCompat="@drawable/baseline_delete_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

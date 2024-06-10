@@ -41,7 +41,7 @@ public class ProkerMilestoneActivity extends TemplateActivity {
     }
 
     public void handleGetProkerMilestone() {
-        String namaProker = StaticUtils.SELECTED_PROKER;
+        String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
 
         apiService.getProkerMilestone(namaProker).enqueue(new Callback<BaseResponse<List<Milestone>>>() {
             @Override

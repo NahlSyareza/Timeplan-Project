@@ -11,7 +11,7 @@ import java.util.Map;
 
 // Everything STATIC goes here
 public class StaticUtils {
-    public static String SELECTED_PROKER = "";
+    public static String SELECTED_PROKER_NAMA = "";
     public static String SELECTED_MILESTONE_DESKRIPSI = "";
     public static String SELECTED_MILESTONE_NAMA = "";
     public static Status SELECTED_MILESTONE_PROGRES = Status.NO_DESC;
@@ -54,6 +54,9 @@ public class StaticUtils {
 
             case "TOUR DE FORCE":
                 return R.mipmap.logo_tour_de_force_round;
+
+            case "KESTARI":
+                return R.mipmap.logo_kestari_round;
 
             default:
                 return R.drawable.baseline_person_24;

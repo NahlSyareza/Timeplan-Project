@@ -79,6 +79,12 @@ public interface BaseApiService {
             @Query("namaBidangNew") String namaBidangNew
     );
 
+    @POST("proker/deleteProker")
+    Call<BaseResponse<Proker>> deleteProker(
+            @Query("namaBidang") String namaBidang,
+            @Query("namaProker") String namaProker
+    );
+
     /*
         MILESTONE HANDLER
      */
@@ -99,6 +105,12 @@ public interface BaseApiService {
             @Query("namaMilestone") String namaMilestone,
             @Query("progresMilestone") Status progresMilestone,
             @Query("deskripsiMilestone") String deskripsiMilestone
+    );
+
+    @POST("milestone/deleteProkerMilestone")
+    Call<BaseResponse<Milestone>> deleteProkerMilestone(
+            @Query("namaProker") String namaProker,
+            @Query("namaMilestone") String namaMilestone
     );
 
 }

@@ -33,7 +33,7 @@ public class AddMilestoneActivity extends TemplateActivity {
         addButton.setOnClickListener(view -> {
             String namaMilestone = namaMilestoneField.getText().toString();
 
-            handleAddProkerMilestone(StaticUtils.SELECTED_PROKER, namaMilestone);
+            handleAddProkerMilestone(StaticUtils.SELECTED_PROKER_NAMA, namaMilestone);
 
             moveActivity(ProkerMilestoneActivity.class);
         });

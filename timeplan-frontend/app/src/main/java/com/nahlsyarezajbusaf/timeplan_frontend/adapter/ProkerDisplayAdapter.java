@@ -48,7 +48,7 @@ public class ProkerDisplayAdapter extends ArrayAdapter<ProkerDisplay> {
         convertView.setOnClickListener(view -> {
             if (namaBidang.equals(StaticUtils.LOGGED_BIDANG) || StaticUtils.LOGGED_BIDANG.equals("KETULEM") || StaticUtils.LOGGED_BIDANG.equals("KESTARI")) {
                 viewToast("Melihat proker " + namaProker);
-                StaticUtils.SELECTED_PROKER = namaProker;
+                StaticUtils.SELECTED_PROKER_NAMA = namaProker;
                 moveActivity(ProkerDetailsActivity.class);
             }
         });

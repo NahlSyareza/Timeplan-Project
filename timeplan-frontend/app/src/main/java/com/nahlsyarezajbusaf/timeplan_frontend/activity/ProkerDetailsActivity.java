@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class ProkerDetailsActivity extends TemplateActivity {
     private TextView namaProkerDesc, steeringComitteeDesc;
-    private ImageView milestoneProkerImage;
+    private ImageView milestoneProkerImage, deleteProkerImage;
     private BaseApiService apiService;
 
     @Override
@@ -29,21 +29,50 @@ public class ProkerDetailsActivity extends TemplateActivity {
         namaProkerDesc = findViewById(R.id.ProkerDetails_namaProkerDesc);
         steeringComitteeDesc = findViewById(R.id.ProkerDetails_steeringComitteeDesc);
         milestoneProkerImage = findViewById(R.id.ProkerDetails_milestoneProkerImage);
+        deleteProkerImage = findViewById(R.id.ProkerDetails_deleteProkerImage);
 
         getNamaProker();
+
+        deleteProkerImage.setOnClickListener(view -> {
+            handleDeleteProker();
+            moveActivity(MainActivity.class);
+        });
 
         milestoneProkerImage.setOnClickListener(view -> {
             moveActivity(ProkerMilestoneActivity.class);
         });
     }
 
+    public void handleDeleteProker() {
+        String namaBidang = StaticUtils.LOGGED_BIDANG;
+        String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
+        apiService.deleteProker(namaBidang, namaProker).enqueue(new Callback<BaseResponse<Proker>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Proker>> call, Response<BaseResponse<Proker>> response) {
+                if (!response.isSuccessful()) {
+                    viewErrorToast(response.code());
+                    return;
+                }
+
+                BaseResponse<Proker> res = response.body();
+                viewToast(res.message);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Proker>> call, Throwable t) {
+                viewInternalErrorToast();
+            }
+        });
+    }
+
+
     public void getNamaProker() {
-        String namaProker = StaticUtils.SELECTED_PROKER;
+        String namaProker = StaticUtils.SELECTED_PROKER_NAMA;
 
         apiService.getNamaProker(namaProker).enqueue(new Callback<BaseResponse<Proker>>() {
             @Override
             public void onResponse(Call<BaseResponse<Proker>> call, Response<BaseResponse<Proker>> response) {
-                if(!response.isSuccessful()) {
+                if (!response.isSuccessful()) {
                     viewErrorToast(response.code());
                     return;
                 }

@@ -97,4 +97,27 @@ public class MilestoneController {
 
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
     }
+
+    @PostMapping("/deleteProkerMilestone")
+    BaseResponse<Milestone> deleteProkerMilestone(
+            @RequestParam String namaProker,
+            @RequestParam String namaMilestone
+    ) {
+        var query = "DELETE FROM milestone_proker_ime WHERE nama_proker=? AND nama_milestone=?";
+
+        try (var connection = DatabaseConnect.connect()) {
+            PreparedStatement request = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            request.setString(1, namaProker);
+            request.setString(2, namaMilestone);
+
+            request.executeUpdate();
+
+            return new BaseResponse<>(true, "Berhasil menghapus milestone " + namaMilestone + " dari proker " + namaProker, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
+    }
 }

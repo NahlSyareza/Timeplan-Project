@@ -4,6 +4,7 @@ import com.eszaray.timeplanspring.configuration.DatabaseConnect;
 import com.eszaray.timeplanspring.model.*;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -137,8 +138,8 @@ public class ProkerController {
 
     @PostMapping("/editProker")
     BaseResponse<Proker> editProker(
-            String namaBidangOld,
-            String namaBidangNew
+            @RequestParam String namaBidangOld,
+            @RequestParam String namaBidangNew
     ) {
         var query1 = "UPDATE proker_ime SET nama_bidang=? WHERE nama_bidang=?";
         var query2 = "UPDATE proker_per_bulan SET nama_bidang=? WHERE nama_bidang=?";
@@ -158,6 +159,34 @@ public class ProkerController {
             return new BaseResponse<>(true, "Proker " + namaBidangOld + " telah diedit!", null);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
+    }
+
+    @PostMapping("/deleteProker")
+    BaseResponse<Proker> deleteProker(
+            @RequestParam String namaBidang,
+            @RequestParam String namaProker
+    ) {
+        var query1 = "DELETE FROM proker_ime WHERE nama_bidang=? AND nama_proker=?;";
+        var query2 = "DELETE FROM proker_per_bulan WHERE nama_bidang=? AND nama_proker=?;";
+
+        try(var connection = DatabaseConnect.connect()) {
+            PreparedStatement request1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement request2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+
+            request1.setString(1, namaBidang);
+            request1.setString(2, namaProker);
+            request2.setString(1, namaBidang);
+            request2.setString(2, namaProker);
+
+            request1.executeUpdate();
+            request2.executeUpdate();
+
+            return new BaseResponse<>(true, "Berhasil menghapus proker", null);
+        } catch(SQLException e) {
+
         }
 
         return new BaseResponse<>(false, CONNECTION_ERROR_MSG, null);
